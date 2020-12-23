@@ -1,0 +1,13 @@
+
+<div class="container-fluid mt-5">
+  <div class="text-right">
+    <button type="button" class="btn btn-primary mb-5">Añadir</button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3">
+    <app-machine-card *ngFor="let machine of machines" [machine]="machine"></app-machine-card>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
