@@ -2,7 +2,7 @@
   <div class="card h-100 p-3 shadow bg-white rounded">
     <div class="col">
       <div class="row">
-        <div [ngClass]="getStatusClass(machine)" class="circle"></div>
+        <div [ngClass]="getStatusStyle(machine.status)" class="circle"></div>
         <p class="ml-2">{{machine.status}}</p>
       </div>
 
@@ -26,7 +26,7 @@
       <hr />
 
       <div class="text-right">
-        <button type="button" class="btn btn-primary">Ver más</button>
+        <button [routerLink]="['/machines/', machine.id]" type="button" class="btn btn-primary">Ver más</button>
       </div>
     </div>
   </div>

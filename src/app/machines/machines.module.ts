@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MachinesRoutingModule } from './machines-routing.module';
 
-// Componentes
+// Pages
+import { HomeComponent } from './pages/home/home.component';
+import { MachineComponent } from './pages/machine/machine.component';
+
+// Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MachineCardComponent } from './components/machine-card/machine-card.component';
 
@@ -13,8 +17,10 @@ import { MockMachines } from './repositories/mock-machines.repository';
 
 @NgModule({
   declarations: [
+    HomeComponent,
     DashboardComponent,
-    MachineCardComponent
+    MachineCardComponent,
+    MachineComponent
   ],
   imports: [
     CommonModule,

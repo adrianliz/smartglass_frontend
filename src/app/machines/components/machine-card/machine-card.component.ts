@@ -11,10 +11,10 @@ export class MachineCardComponent {
 
   constructor() { }
 
-  public getStatusClass(machine: Machine): object {
-    return {'bg-success': machine.status === MachineStatus.Activa,
-            'bg-warning': machine.status === MachineStatus.En_espera,
-            'bg-danger': machine.status === MachineStatus.Parada,
-            'bg-secondary': machine.status === MachineStatus.Indefinido};
+  public getStatusStyle(status: MachineStatus): object {
+    return {'bg-success': status === MachineStatus.Activa,
+            'bg-warning': status === MachineStatus.En_espera,
+            'bg-danger': status === MachineStatus.Parada,
+            'bg-secondary': status === MachineStatus.Indefinido};
   }
 }
