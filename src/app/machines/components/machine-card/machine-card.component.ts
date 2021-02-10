@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Machine, MachineStatus } from '../../models/machine.model';
+import {Component, Input} from '@angular/core';
+import {Machine, MachineStatus} from '../../models/machine.model';
 
 @Component({
   selector: 'app-machine-card',
@@ -9,12 +9,15 @@ import { Machine, MachineStatus } from '../../models/machine.model';
 export class MachineCardComponent {
   @Input() machine: Machine;
 
-  constructor() { }
+  constructor() {
+  }
 
   public getStatusStyle(status: MachineStatus): object {
-    return {'bg-success': status === MachineStatus.Activa,
-            'bg-warning': status === MachineStatus.En_espera,
-            'bg-danger': status === MachineStatus.Parada,
-            'bg-secondary': status === MachineStatus.Indefinido};
+    return {
+      'bg-success': status === MachineStatus.Activa,
+      'bg-warning': status === MachineStatus.En_espera,
+      'bg-danger': status === MachineStatus.Parada,
+      'bg-secondary': status === MachineStatus.Indefinido
+    };
   }
 }

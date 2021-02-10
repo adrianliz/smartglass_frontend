@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Machine, MachineStatus } from './../models/machine.model';
-import { MachinesRepository } from './machines.repository';
+import {Injectable} from '@angular/core';
+import {Machine, MachineStatus} from '../models/machine.model';
+import {MachinesRepository} from './machines.repository';
 
 @Injectable()
 export class MockMachines extends MachinesRepository {
