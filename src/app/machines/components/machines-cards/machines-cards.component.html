@@ -1,0 +1,16 @@
+<div class="col">
+	<div class="text-right mb-3">
+		<button mat-raised-button color="primary">
+			<mat-icon>add</mat-icon>
+			Add
+		</button>
+	</div>
+
+	<div class="row">
+		<div class="row row-cols-1 row-cols-md-3">
+			<div *ngFor="let machine of machines" class="col mb-4">
+				<app-machine-card [machine]="machine"></app-machine-card>
+			</div>
+		</div>
+	</div>
+</div>

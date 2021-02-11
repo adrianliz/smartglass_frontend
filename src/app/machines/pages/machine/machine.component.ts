@@ -1,15 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-machine',
-  templateUrl: './machine.component.html'
+	selector: 'app-machine',
+	templateUrl: './machine.component.html'
 })
-export class MachineComponent implements OnInit {
+export class MachineComponent {
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
+	constructor() {
+	}
 }

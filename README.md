@@ -11,4 +11,9 @@ También, se podrán generar distintas estadísticas derivadas de los resultados
 
 ## Versiones disponibles
 - :white_check_mark: v0.1.0 -> Se muestra un dashboard con las distintas máquinas-herramienta de prueba
+
 ![v0.1.0](screenshots/v0.1.0.png)
+
+- :white_check_mark: v0.2.0 -> Uso de Angular Material como proveedor de componentes estándar y creación de un sidenav básico
+
+![v0.2.0](screenshots/v0.2.0.png)

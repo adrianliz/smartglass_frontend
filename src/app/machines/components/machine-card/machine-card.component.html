@@ -1,33 +1,27 @@
-<div class="col mb-4">
-  <div class="card h-100 p-3 shadow bg-white rounded">
-    <div class="col">
-      <div class="row">
-        <div [ngClass]="getStatusStyle(machine.status)" class="circle"></div>
-        <p class="ml-2">{{machine.status}}</p>
-      </div>
+<mat-card class="h-100 mat-elevation-z8 rounded-lg">
+	<mat-card-header>
+		<div mat-card-avatar [ngClass]="getStatusStyle(machine.status)"></div>
+		<mat-card-title>{{machine.name}}</mat-card-title>
+	</mat-card-header>
+	<img mat-card-image [src]="machine.img" [alt]="machine.name" class=" m-2 img-fluid">
+	<mat-card-content>
+		<div class="grey-text mb-4">
+			<p>Nº SERIE: {{machine.series}}</p>
+			<p>MODELO: {{machine.model}}</p>
+		</div>
 
-      <div class="row">
-        <img [src]="machine.img" [alt]="machine.name" class="img-fluid">
-      </div>
-    </div>
+		<p>Estadísticas</p>
+		<hr/>
 
-    <div class="card-body">
-      <h5 class="card-title text-center">{{machine.name}}</h5>
-
-      <div class="text-secondary mb-4">
-        <p>Nº SERIE: {{machine.serie}}</p>
-        <p>MODELO: {{machine.model}}</p>
-      </div>
-
-      <p>Estadísticas</p>
-      <hr />
-
-      <p>Notificaciones</p>
-      <hr />
-
-      <div class="text-right">
-        <button [routerLink]="['/machines/', machine.id]" type="button" class="btn btn-primary">Ver más</button>
-      </div>
-    </div>
-  </div>
-</div>
+		<p>Notificaciones</p>
+		<hr/>
+	</mat-card-content>
+	<mat-card-actions>
+		<div class="text-right m-3">
+			<button mat-raised-button [routerLink]="['/machines/', machine.id]" color="primary" class="mat-elevation-z8">
+				<mat-icon>read_more</mat-icon>
+				Ver más
+			</button>
+		</div>
+	</mat-card-actions>
+</mat-card>

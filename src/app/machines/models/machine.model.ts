@@ -1,15 +1,15 @@
 export enum MachineStatus {
-  Activa = 'Activa',
-  En_espera = 'En espera',
-  Parada = 'Parada',
-  Indefinido = 'Indefinido'
+	Active = 'activa',
+	Waiting = 'en espera',
+	Stopped = 'parada',
+	Undefined = 'indefinido'
 }
 
 export interface Machine {
-  id: number;
-  name: string;
-  serie: string;
-  model: string;
-  status: MachineStatus;
-  img: string;
+	id: number;
+	name: string;
+	series: string;
+	model: string;
+	status: MachineStatus;
+	img: string;
 }

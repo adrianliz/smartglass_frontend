@@ -1,0 +1,34 @@
+<h1 class="mx-5 my-2 text-center">Turomas</h1>
+
+<mat-nav-list>
+	<a mat-list-item
+	   routerLink="/machines"
+	   (click)="sidenav.toggle()">
+		Home
+		<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+	</a>
+
+	<a mat-list-item
+	   routerLink="/machines"
+	   (click)="sidenav.toggle()">
+		Tu perfil
+		<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+	</a>
+
+	<mat-expansion-panel class="mat-elevation-z0">
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Máquinas
+			</mat-panel-title>
+			<mat-panel-description>
+				Consulte sus máquinas disponibles
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<a *ngFor="let machine of machines" mat-list-item
+		   [routerLink]="['/machines/', machine.id]"
+		   (click)="sidenav.toggle()">
+			{{machine.name}}
+			<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+		</a>
+	</mat-expansion-panel>
+</mat-nav-list>
