@@ -2,6 +2,7 @@
 	<mat-card-header>
 		<div mat-card-avatar [ngClass]="getStatusStyle(machine.status)"></div>
 		<mat-card-title>{{machine.name}}</mat-card-title>
+		<mat-card-subtitle>{{machine.status | titlecase}}</mat-card-subtitle>
 	</mat-card-header>
 	<img mat-card-image [src]="machine.img" [alt]="machine.name" class=" m-2 img-fluid">
 	<mat-card-content>
@@ -18,7 +19,7 @@
 	</mat-card-content>
 	<mat-card-actions>
 		<div class="text-right m-3">
-			<button mat-raised-button [routerLink]="['/machines/', machine.id]" color="primary" class="mat-elevation-z8">
+			<button mat-raised-button [routerLink]="['/dashboard', machine.id]" color="primary" class="mat-elevation-z8">
 				<mat-icon>read_more</mat-icon>
 				Ver más
 			</button>

@@ -3,12 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 	{
-		path: 'machines',
+		path: 'auth',
+		loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+	},
+	{
+		path: 'dashboard',
 		loadChildren: () => import('./machines/machines.module').then(m => m.MachinesModule)
 	},
 	{
 		path: '**',
-		redirectTo: 'machines'
+		redirectTo: 'auth'
 	}
 ];
 

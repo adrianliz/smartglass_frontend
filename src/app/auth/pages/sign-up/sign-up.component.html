@@ -1,0 +1,63 @@
+<mat-toolbar color="primary">
+	<span>Smartglass</span>
+</mat-toolbar>
+
+<div class="container-fluid d-flex flex-column">
+	<div class="row justify-content-center my-5">
+		<mat-card class="mat-elevation-z8 rounded-lg text-center w-50">
+			<mat-card-content class="overflow-hidden">
+				<h1>Regístrate</h1>
+				<form [formGroup]="signUpForm" (submit)="signUp()">
+					<div class="form-group">
+						<mat-form-field class="form-field" appearance="standard">
+							<mat-label>Login</mat-label>
+							<input matInput formControlName="username" required>
+							<mat-error *ngIf="fields.username.invalid">Login requerido</mat-error>
+						</mat-form-field>
+					</div>
+
+					<div class="form-group">
+						<mat-form-field class="form-field" appearance="standard">
+							<mat-label>Email</mat-label>
+							<input matInput formControlName="email" required>
+							<mat-error *ngIf="fields.email.errors">
+								<span *ngIf="fields.email.errors.required">Email requerido</span>
+								<span *ngIf="fields.email.errors.email">Email inválido</span>
+							</mat-error>
+						</mat-form-field>
+					</div>
+
+					<div class="form-group">
+						<mat-form-field class="form-field" appearance="standard">
+							<mat-label>Contraseña</mat-label>
+							<input matInput formControlName="password" type="password" required>
+							<mat-error *ngIf="fields.password.errors">
+								<span *ngIf="fields.password.errors.required">Contraseña requerida</span>
+								<span *ngIf="fields.password.errors.minlength">La contraseña debe tener al menos 6 carácteres</span>
+							</mat-error>
+						</mat-form-field>
+					</div>
+
+					<div class="form-group">
+						<mat-form-field class="form-field" appearance="standard">
+							<mat-label>Confirmar contraseña</mat-label>
+							<input matInput formControlName="confirmedPassword" type="password" required>
+							<mat-error *ngIf="fields.confirmedPassword.errors">
+								<span *ngIf="fields.confirmedPassword.errors.required">Confirmación de contraseña requerida</span>
+								<span *ngIf="fields.confirmedPassword.errors.mustMatch">Las contraseñas no coinciden</span>
+							</mat-error>
+						</mat-form-field>
+					</div>
+
+					<mat-card-actions>
+						<div class="text-right m-3">
+							<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit">
+								Registrarse
+							</button>
+						</div>
+					</mat-card-actions>
+				</form>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

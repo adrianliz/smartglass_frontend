@@ -17,3 +17,7 @@ También, se podrán generar distintas estadísticas derivadas de los resultados
 - :white_check_mark: v0.2.0 -> Uso de Angular Material como proveedor de componentes estándar y creación de un sidenav básico
 
 ![v0.2.0](screenshots/v0.2.0.png)
+
+- :white_check_mark: v0.3.0 -> Página de registro básica
+
+![v0.3.0](screenshots/v0.3.0.png)
