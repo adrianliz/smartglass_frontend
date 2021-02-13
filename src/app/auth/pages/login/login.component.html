@@ -1,0 +1,30 @@
+<h1 class="mat-display-2 mb-0">Login</h1>
+
+<form [formGroup]="loginForm" (submit)="login()">
+	<div class="form-group">
+		<mat-form-field class="form-field" appearance="standard">
+			<mat-label>Login</mat-label>
+			<input matInput formControlName="login" type="text">
+			<mat-error *ngIf="controls.login.invalid">Login requerido</mat-error>
+		</mat-form-field>
+	</div>
+
+	<div class="form-group">
+		<mat-form-field class="form-field" appearance="standard">
+			<mat-label>Contraseña</mat-label>
+			<input matInput formControlName="password" type="password">
+			<mat-error *ngIf="controls.password.invalid">Contraseña requerida</mat-error>
+		</mat-form-field>
+	</div>
+
+	<p>
+		¿No tienes una cuenta?
+		<a class="d-inline" routerLink="../signup">Regístrate</a>
+	</p>
+
+	<div class="text-right m-3">
+		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit">
+			Entrar
+		</button>
+	</div>
+</form>

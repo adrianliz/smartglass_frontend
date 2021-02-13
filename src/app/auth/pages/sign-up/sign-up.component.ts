@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { matcher } from './matcher.validator';
 
@@ -9,20 +9,20 @@ import { matcher } from './matcher.validator';
 })
 export class SignUpComponent {
 	signUpForm: FormGroup = this.formBuilder.group({
-			username: [null, Validators.required],
-			email: [null, [Validators.required, Validators.email]],
+			login: ['', Validators.required],
+			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, Validators.minLength(6)]],
 			confirmedPassword: ['', [Validators.required]],
 		},
 		{
-			validator: matcher('password', 'confirmedPassword')
-		} as AbstractControlOptions
+			validators: [matcher('password', 'confirmedPassword')]
+		}
 	);
 
 	constructor(private formBuilder: FormBuilder, private router: Router) {
 	}
 
-	get fields(): { [key: string]: AbstractControl } {
+	get controls(): { [key: string]: AbstractControl } {
 		return this.signUpForm.controls;
 	}
 
