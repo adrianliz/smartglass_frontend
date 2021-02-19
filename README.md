@@ -22,6 +22,8 @@ También, se podrán generar distintas estadísticas derivadas de los resultados
 
 ![v0.3.0](screenshots/v0.3.0.png)
 
-- :white_check_mark: v0.3.0 -> Página de login básica
+- :white_check_mark: v0.4.0 -> Página de login básica
 
 ![v0.4.0](screenshots/v0.4.0.png)
+
+- :white_check_mark: v0.5.0 -> Lógica de negocio de autenticación con Google Firebase

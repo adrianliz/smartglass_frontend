@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MaterialModule } from '../material/material.module';
+import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MainComponent } from './pages/main/main.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
 	declarations: [SignUpComponent, LoginComponent, MainComponent],
@@ -14,7 +16,9 @@ import { MainComponent } from './pages/main/main.component';
 		AuthRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MaterialModule
+		SharedModule,
+		MaterialModule,
+		SweetAlert2Module
 	]
 })
 export class AuthModule {

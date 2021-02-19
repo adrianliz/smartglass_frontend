@@ -1,19 +1,25 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { errorMessages } from '../../models/auth-response.model';
+import { ErrorCause } from '../../models/firebase-responses.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html'
 })
 export class LoginComponent {
+	loadingDashboard = false;
+
 	loginForm: FormGroup = this.formBuilder.group({
-			login: ['', Validators.required],
+			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required]]
 		}
 	);
 
-	constructor(private formBuilder: FormBuilder, private router: Router) {
+	constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) {
 	}
 
 	get controls(): { [key: string]: AbstractControl } {
@@ -24,7 +30,25 @@ export class LoginComponent {
 		if (! this.loginForm.valid) {
 			return;
 		}
+		const { email, password } = this.loginForm.value;
 
-		this.router.navigate(['dashboard']); // TODO: backend auth
+		this.loadingDashboard = true;
+		this.authService.login(email, password).subscribe(
+			res => {
+				if (res.ok) {
+					this.router.navigateByUrl('/dashboard')
+						.then(() => {
+							this.loadingDashboard = false;
+						});
+				} else {
+					this.loadingDashboard = false;
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: errorMessages.get(res.error || ErrorCause.UNDEFINED),
+					});
+				}
+			}
+		);
 	}
 }

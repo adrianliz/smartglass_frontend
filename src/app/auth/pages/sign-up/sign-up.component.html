@@ -3,16 +3,10 @@
 <form [formGroup]="signUpForm" (submit)="signUp()">
 	<div class="form-group">
 		<mat-form-field class="form-field" appearance="standard">
-			<mat-label>Login</mat-label>
-			<input matInput formControlName="login" type="text">
-			<mat-error *ngIf="controls.login.invalid">Login requerido</mat-error>
-		</mat-form-field>
-	</div>
-
-	<div class="form-group">
-		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>Email</mat-label>
-			<input matInput formControlName="email" type="email">
+			<label>
+				<input matInput formControlName="email" type="email">
+			</label>
 			<mat-error *ngIf="controls.email.errors">
 				<span *ngIf="controls.email.errors.required">Email requerido</span>
 				<span *ngIf="controls.email.errors.email">Email inválido</span>
@@ -23,7 +17,9 @@
 	<div class="form-group">
 		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>Contraseña</mat-label>
-			<input matInput formControlName="password" type="password">
+			<label>
+				<input matInput formControlName="password" type="password">
+			</label>
 			<mat-error *ngIf="controls.password.errors">
 				<span *ngIf="controls.password.errors.required">Contraseña requerida</span>
 				<span *ngIf="controls.password.errors.minlength">La contraseña debe tener al menos 6 carácteres</span>
@@ -34,7 +30,9 @@
 	<div class="form-group">
 		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>Confirmar contraseña</mat-label>
-			<input matInput formControlName="confirmedPassword" type="password">
+			<label>
+				<input matInput formControlName="confirmedPassword" type="password">
+			</label>
 			<mat-error *ngIf="controls.confirmedPassword.errors">
 				<span *ngIf="controls.confirmedPassword.errors.required">Confirmación de contraseña requerida</span>
 				<span *ngIf="controls.confirmedPassword.errors.mustMatch">Las contraseñas no coinciden</span>
@@ -47,7 +45,9 @@
 		<a class="d-inline" routerLink="../login">Inicia sesión</a>
 	</p>
 
-	<div class="text-right m-3">
+	<app-loading *ngIf="loadingDashboard"></app-loading>
+
+	<div *ngIf="!loadingDashboard" class="text-right m-3">
 		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit">
 			Registrarse
 		</button>
