@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MachinesCardsComponent } from './components/machines-cards/machines-cards.component';
+import { TwinsCardsComponent } from './components/twins-cards/twins-cards.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { MachineComponent } from './pages/machine/machine.component';
+import { TwinComponent } from './pages/twin/twin.component';
 
 const routes: Routes = [
 	{
 		path: '',
 		component: DashboardComponent,
 		children: [
-			{ path: 'machines', component: MachinesCardsComponent },
-			{ path: ':id', component: MachineComponent },
+			{ path: 'machines', component: TwinsCardsComponent },
+			{ path: ':id', component: TwinComponent },
 			{ path: '**', redirectTo: 'machines', pathMatch: 'full' }
 		]
 	}
@@ -22,5 +22,5 @@ const routes: Routes = [
 	],
 	exports: [RouterModule]
 })
-export class MachinesRoutingModule {
+export class TwinsRoutingModule {
 }

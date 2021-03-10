@@ -36,17 +36,13 @@ export class LoginComponent {
 		this.authService.login(email, password).subscribe(
 			res => {
 				if (res.ok) {
-					this.router.navigateByUrl('/dashboard')
-						.then(() => {
-							this.loadingDashboard = false;
-						});
+					this.router.navigateByUrl('/dashboard').then(() => this.loadingDashboard = false);
 				} else {
-					this.loadingDashboard = false;
 					Swal.fire({
 						icon: 'error',
 						title: 'Oops...',
 						text: errorMessages.get(res.error || ErrorCause.UNDEFINED),
-					});
+					}).then(() => this.loadingDashboard = false);
 				}
 			}
 		);

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from '../../../auth/services/auth.service';
-import { Machine } from '../../models/machine.model';
-import { MachinesService } from '../../services/machines.service';
+import { Twin } from '../../models/twin.model';
+import { TwinsService } from '../../services/twins.service';
 
 @Component({
 	selector: 'app-navigation',
@@ -10,9 +10,9 @@ import { MachinesService } from '../../services/machines.service';
 })
 export class NavigationComponent implements OnInit {
 	@Input() sidenav!: MatSidenav;
-	machines: Machine[] = [];
+	machines: Twin[] = [];
 
-	constructor(private machinesService: MachinesService, private authService: AuthService) {
+	constructor(private machinesService: TwinsService, private authService: AuthService) {
 	}
 
 	ngOnInit(): void {

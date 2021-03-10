@@ -26,6 +26,7 @@
             "styles": [
 							"./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
 							"src/assets/css/normalize.css",
+							"src/assets/css/bootstrap.min.css",
 							"src/assets/css/styles.css",
 							"src/assets/css/theme.scss"
             ],
@@ -92,6 +93,7 @@
             "styles": [
 							"./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/assets/css/normalize.css",
+							"src/assets/css/bootstrap.min.css",
 							"src/assets/css/styles.css",
 							"src/assets/css/theme.scss"
 						],
