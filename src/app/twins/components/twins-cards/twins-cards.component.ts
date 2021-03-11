@@ -7,12 +7,14 @@ import { TwinsService } from '../../services/twins.service';
 	templateUrl: './twins-cards.component.html'
 })
 export class TwinsCardsComponent implements OnInit {
-	machines: Twin[] = [];
+	twins: Twin[] = [];
 
-	constructor(private service: TwinsService) {
+	constructor(private twinsService: TwinsService) {
 	}
 
 	ngOnInit(): void {
-		this.machines = this.service.getAll();
+		this.twinsService.getAll().subscribe(
+			res => this.twins = res // TODO: show message if not twin is available
+		);
 	}
 }

@@ -1,0 +1,29 @@
+<mat-card class="h-100 mat-elevation-z8 rounded-lg">
+	<mat-card-header>
+		<div mat-card-avatar [ngClass]="getStatusStyle(twin.state)"></div>
+		<mat-card-title>{{twin.name}}</mat-card-title>
+		<mat-card-subtitle>{{twin.state}}</mat-card-subtitle>
+	</mat-card-header>
+	<img mat-card-image [src]="twin.img" [alt]="twin.name" class=" m-2 img-fluid">
+	<mat-card-content>
+		<div class="text-secondary mb-4">
+			<p><b>Nº SERIE:</b> {{twin.series}}</p>
+			<p><b>MODELO:</b> {{twin.model}}</p>
+		</div>
+
+		<p>Ratios</p>
+		<hr class="border-dark">
+		<div class="text-center">
+			<ngx-gauge *ngFor="let ratio of ratios" class="ml-3" [value]="ratio.value | percentage" [label]="ratio.ratio"
+			           [size]="120" append="%"></ngx-gauge>
+		</div>
+	</mat-card-content>
+	<mat-card-actions>
+		<div class="text-right m-3">
+			<button mat-raised-button [routerLink]="['/dashboard', twin.name]" color="primary" class="mat-elevation-z8">
+				<mat-icon>read_more</mat-icon>
+				Ver más
+			</button>
+		</div>
+	</mat-card-actions>
+</mat-card>

@@ -1,11 +1,7 @@
 @import '../../../node_modules/@angular/material/theming';
 
-$primaryPalette: mat-palette($mat-deep-purple);
-$accentPalette: mat-palette($mat-amber, A200, A100, A400);
-
-$primaryColor: mat-color($primaryPalette);
-$accentColor: mat-color($accentPalette);
+$primary-palette: mat-palette($mat-deep-purple);
 
 a, a:hover {
-	color: $primaryColor
+	color: mat-color($primary-palette);
 }

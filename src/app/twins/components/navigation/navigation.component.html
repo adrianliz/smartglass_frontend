@@ -1,5 +1,5 @@
-<mat-toolbar color="primary">
-	<h1 class="mx-5 my-2 text-center">SmartGlass</h1>
+<mat-toolbar color="secondary" class="bg-white">
+	<img src="assets/img/logo.jpg" class="text-center" alt="logo">
 </mat-toolbar>
 
 <mat-nav-list>
@@ -26,10 +26,10 @@
 				Consulte sus máquinas disponibles
 			</mat-panel-description>
 		</mat-expansion-panel-header>
-		<a *ngFor="let machine of machines" mat-list-item
-		   [routerLink]="['/dashboard', machine.id]"
+		<a *ngFor="let twin of twins" mat-list-item
+		   [routerLink]="['/dashboard', twin.name]"
 		   (click)="sidenav.toggle()">
-			{{machine.name}}
+			{{twin.name}}
 			<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
 		</a>
 	</mat-expansion-panel>

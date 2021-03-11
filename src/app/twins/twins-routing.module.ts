@@ -9,9 +9,9 @@ const routes: Routes = [
 		path: '',
 		component: DashboardComponent,
 		children: [
-			{ path: 'machines', component: TwinsCardsComponent },
+			{ path: 'twins', component: TwinsCardsComponent },
 			{ path: ':id', component: TwinComponent },
-			{ path: '**', redirectTo: 'machines', pathMatch: 'full' }
+			{ path: '**', redirectTo: 'twins', pathMatch: 'full' }
 		]
 	}
 ];

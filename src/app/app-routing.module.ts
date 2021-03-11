@@ -12,7 +12,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'dashboard',
-		loadChildren: () => import('./machines/twins.module').then(m => m.TwinsModule),
+		loadChildren: () => import('./twins/twins.module').then(m => m.TwinsModule),
 		canActivate: [ValidateTokenGuard],
 		canLoad: [ValidateTokenGuard]
 	},

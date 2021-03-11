@@ -10,13 +10,15 @@ import { TwinsService } from '../../services/twins.service';
 })
 export class NavigationComponent implements OnInit {
 	@Input() sidenav!: MatSidenav;
-	machines: Twin[] = [];
+	twins: Twin[] = [];
 
-	constructor(private machinesService: TwinsService, private authService: AuthService) {
+	constructor(private twinsService: TwinsService, private authService: AuthService) {
 	}
 
 	ngOnInit(): void {
-		this.machines = this.machinesService.getAll();
+		this.twinsService.getAll().subscribe(
+			res => this.twins = res
+		);
 	}
 
 	logout() {
