@@ -1,10 +1,10 @@
-<mat-card class="h-100 mat-elevation-z8 rounded-lg">
+<mat-card class="mat-elevation-z8 rounded-lg">
 	<mat-card-header>
-		<div mat-card-avatar [ngClass]="getStatusStyle(twin.state)"></div>
+		<div mat-card-avatar [ngClass]="getStateStyle(twin.state)"></div>
 		<mat-card-title>{{twin.name}}</mat-card-title>
 		<mat-card-subtitle>{{twin.state}}</mat-card-subtitle>
 	</mat-card-header>
-	<img mat-card-image [src]="twin.img" [alt]="twin.name" class=" m-2 img-fluid">
+	<img mat-card-image [src]="twin.img" [alt]="twin.name" class="m-2 img-fluid">
 	<mat-card-content>
 		<div class="text-secondary mb-4">
 			<p><b>Nº SERIE:</b> {{twin.series}}</p>

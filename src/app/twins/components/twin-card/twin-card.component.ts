@@ -3,9 +3,8 @@ import { Ratio, Twin, TwinState } from '../../models/twin.model';
 import { TwinsService } from '../../services/twins.service';
 
 @Component({
-	selector: 'app-machine-card',
-	templateUrl: './twin-card.component.html',
-	styleUrls: ['./twin-card.component.css']
+	selector: 'app-twin-card',
+	templateUrl: './twin-card.component.html'
 })
 export class TwinCardComponent implements OnInit {
 	@Input() twin!: Twin;
@@ -20,11 +19,11 @@ export class TwinCardComponent implements OnInit {
 		);
 	}
 
-	public getStatusStyle(status: TwinState): object {
+	public getStateStyle(state: TwinState): object {
 		return {
-			'bg-warning': status === TwinState.IN_STANDBY,
-			'bg-success': status === TwinState.DOING_PROCESS,
-			'bg-danger': status === TwinState.IN_BREAKDOWN
+			'bg-warning': state === TwinState.IN_STANDBY,
+			'bg-success': state === TwinState.DOING_PROCESS,
+			'bg-danger': state === TwinState.IN_BREAKDOWN
 		};
 	}
 }

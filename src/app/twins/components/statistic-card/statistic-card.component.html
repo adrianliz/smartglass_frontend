@@ -1,0 +1,21 @@
+<mat-card class="h-100 mat-elevation-z8 rounded-lg">
+	<mat-card-header>
+		<mat-card-title>{{name}}</mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<canvas *ngIf="chart" baseChart
+		        [data]="chart.data"
+		        [labels]="chart.labels"
+		        [chartType]="chart.type">
+		</canvas>
+		<table *ngIf="table" mat-table [dataSource]="table.dataSource" class="w-100">
+			<ng-container *ngFor="let column of table.columns" matColumnDef="{{column}}">
+				<mat-header-cell *matHeaderCellDef>{{column}}</mat-header-cell>
+				<mat-cell *matCellDef="let element">{{element[column]}}</mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="table.columns"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: table.columns;"></mat-row>
+		</table>
+	</mat-card-content>
+</mat-card>

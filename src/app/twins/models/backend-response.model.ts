@@ -8,12 +8,28 @@ export interface TwinResponse {
 }
 
 export enum RatioType {
-	AVAILABILITY = 'AVAILABILITY',
-	EFFICIENCY = 'EFFICIENCY',
-	EFFECTIVENESS = 'EFFECTIVENESS'
+	AVAILABILITY = 'Disponibilidad',
+	EFFICIENCY = 'Eficiencia',
+	EFFECTIVENESS = 'Efectividad'
 }
 
 export interface RatioResponse {
 	ratio: RatioType;
 	value: number;
+}
+
+export interface MaterialUsageResponse {
+	name: string;
+	usedTimes: number;
+}
+
+export interface ProcessesInfoResponse {
+	processingGlassHours: string;
+	loadingGlassHours: string;
+	standbyHours: string;
+}
+
+export interface BreakdownResponse {
+	errorName: string;
+	timesOccurred: number;
 }

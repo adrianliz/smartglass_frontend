@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ChartsModule } from 'ng2-charts';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { MaterialModule } from '../material/material.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { StatisticCardComponent } from './components/statistic-card/statistic-card.component';
 
 import { TwinCardComponent } from './components/twin-card/twin-card.component';
-import { TwinsCardsComponent } from './components/twins-cards/twins-cards.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TwinComponent } from './pages/twin/twin.component';
+import { TwinsComponent } from './pages/twins/twins.component';
 import { PercentagePipe } from './pipes/percentage.pipe';
-import { RealTwins } from './repositories/real-twins.repository';
-import { TwinsRepository } from './repositories/twins.repository';
 
 import { TwinsService } from './services/twins.service';
 import { TwinsRoutingModule } from './twins-routing.module';
@@ -18,21 +18,22 @@ import { TwinsRoutingModule } from './twins-routing.module';
 @NgModule({
 	declarations: [
 		DashboardComponent,
-		TwinsCardsComponent,
+		TwinsComponent,
 		TwinCardComponent,
 		TwinComponent,
 		NavigationComponent,
-		PercentagePipe
+		StatisticCardComponent,
+		PercentagePipe,
 	],
 	imports: [
 		CommonModule,
 		TwinsRoutingModule,
 		MaterialModule,
-		NgxGaugeModule
+		NgxGaugeModule,
+		ChartsModule
 	],
 	providers: [
-		TwinsService,
-		{ provide: TwinsRepository, useClass: RealTwins }
+		TwinsService
 	]
 })
 export class TwinsModule {

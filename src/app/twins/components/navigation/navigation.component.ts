@@ -16,7 +16,7 @@ export class NavigationComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.twinsService.getAll().subscribe(
+		this.twinsService.getTwins().subscribe(
 			res => this.twins = res
 		);
 	}
