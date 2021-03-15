@@ -1,5 +1,3 @@
-import { RatioType } from './backend-response.model';
-
 export enum TwinState {
 	IN_STANDBY = 'IN_STANDBY',
 	IN_BREAKDOWN = 'IN_BREAKDOWN',
@@ -12,9 +10,4 @@ export interface Twin {
 	model: string;
 	state: TwinState;
 	img: string;
-}
-
-export interface Ratio {
-	ratio: RatioType;
-	value: number;
 }

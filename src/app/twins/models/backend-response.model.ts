@@ -33,3 +33,9 @@ export interface BreakdownResponse {
 	errorName: string;
 	timesOccurred: number;
 }
+
+export enum ErrorMessage {
+	TWINS_ERROR = 'No se han podido recuperar los gemelos disponibles',
+	RATIOS_ERROR = 'No se han podido recuperar los ratios',
+	STATISTIC_ERROR = 'No se ha podido recuperar la estadística'
+}

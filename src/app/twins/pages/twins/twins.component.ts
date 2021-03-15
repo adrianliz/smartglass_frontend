@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorMessage } from '../../models/backend-response.model';
 import { Twin } from '../../models/twin.model';
 import { TwinsService } from '../../services/twins.service';
 
@@ -8,13 +9,23 @@ import { TwinsService } from '../../services/twins.service';
 })
 export class TwinsComponent implements OnInit {
 	twins: Twin[] = [];
+	error?: ErrorMessage;
+	loading = false;
 
 	constructor(private twinsService: TwinsService) {
 	}
 
 	ngOnInit(): void {
+		this.loading = true;
 		this.twinsService.getTwins().subscribe(
-			res => this.twins = res // TODO: show message if no twin is available
+			res => {
+				this.twins = res;
+				this.loading = false;
+			},
+			err => {
+				this.error = ErrorMessage.TWINS_ERROR;
+				this.loading = false;
+			}
 		);
 	}
 }

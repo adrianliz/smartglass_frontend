@@ -14,8 +14,14 @@
 		<p>Ratios</p>
 		<hr class="border-dark">
 		<div class="text-center">
-			<ngx-gauge *ngFor="let ratio of ratios" class="ml-3" [value]="ratio.value | percentage" [label]="ratio.ratio"
-			           [size]="120" append="%"></ngx-gauge>
+			<app-loading *ngIf="loading; else ratiosGauges"></app-loading>
+
+			<ng-template #ratiosGauges>
+				<app-error-message *ngIf="error" [message]="error"></app-error-message>
+
+				<ngx-gauge *ngFor="let ratio of ratios" class="ml-3" [value]="ratio.value | percentage" [label]="ratio.ratio"
+				           [size]="120" append="%"></ngx-gauge>
+			</ng-template>
 		</div>
 	</mat-card-content>
 	<mat-card-actions>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { MaterialModule } from '../material/material.module';
+import { SharedModule } from '../shared/shared.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { StatisticCardComponent } from './components/statistic-card/statistic-card.component';
 
@@ -28,6 +29,7 @@ import { TwinsRoutingModule } from './twins-routing.module';
 	imports: [
 		CommonModule,
 		TwinsRoutingModule,
+		SharedModule,
 		MaterialModule,
 		NgxGaugeModule,
 		ChartsModule

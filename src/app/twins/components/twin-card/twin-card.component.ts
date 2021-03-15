@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Ratio, Twin, TwinState } from '../../models/twin.model';
+import { ErrorMessage, RatioResponse } from '../../models/backend-response.model';
+import { Twin, TwinState } from '../../models/twin.model';
 import { TwinsService } from '../../services/twins.service';
 
 @Component({
@@ -8,14 +9,24 @@ import { TwinsService } from '../../services/twins.service';
 })
 export class TwinCardComponent implements OnInit {
 	@Input() twin!: Twin;
-	ratios: Ratio[] = [];
+	ratios: RatioResponse[] = [];
+	error?: ErrorMessage;
+	loading = false;
 
 	constructor(private twinsService: TwinsService) {
 	}
 
 	ngOnInit(): void {
+		this.loading = true;
 		this.twinsService.getRatios(this.twin.name).subscribe(
-			res => this.ratios = res // TODO: error handle
+			res => {
+				this.ratios = res;
+				this.loading = false;
+			},
+			err => {
+				this.error = ErrorMessage.RATIOS_ERROR;
+				this.loading = false;
+			}
 		);
 	}
 

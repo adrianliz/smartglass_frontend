@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import {
@@ -10,48 +11,32 @@ import {
 	RatioResponse,
 	TwinResponse
 } from '../models/backend-response.model';
-import { ChartType, StatisticChart, StatisticPeriod, StatisticTable, StatisticType } from '../models/statistic.model';
-import { Ratio, Twin } from '../models/twin.model';
+import { Chart, ChartName, ChartType, Period, Table, TableName } from '../models/statistic.model';
+import { Twin } from '../models/twin.model';
 
 @Injectable()
 export class TwinsService {
 	private readonly twinsBaseURL: string;
+	private chartCallbacks: Map<ChartName, (twinName: string, period: Period) => Observable<Chart>>;
+	private tableCallbacks: Map<TableName, (twinName: string, period: Period) => Observable<Table>>;
 
 	constructor(private http: HttpClient) {
 		this.twinsBaseURL = environment.twinsBaseURL;
+		this.chartCallbacks = new Map();
+		this.chartCallbacks.set(ChartName.MATERIALS_USAGE, this.getMaterialsUsage);
+		this.chartCallbacks.set(ChartName.PROCESSES_INFO, this.getProcessesInfo);
+		this.tableCallbacks = new Map();
+		this.tableCallbacks.set(TableName.BREAKDOWNS, this.getBreakdowns);
 	}
 
-	getTwins(): Observable<Twin[]> {
-		return this.http.get<TwinResponse[]>(this.twinsBaseURL).pipe(
-			map<TwinResponse[], Twin[]>(res => res.map(o => {
-				return {
-					name: o.name,
-					series: o.series,
-					model: o.model,
-					state: o.state,
-					img: 'assets/img/machine1.png' // TODO: some mapping based on model
-				};
-			}))
-		);
-	}
-
-	getRatios(twinName: string): Observable<Ratio[]> {
-		const url = `${ this.twinsBaseURL }/ratios`;
-		const params = new HttpParams().set('twinName', twinName).set('period', StatisticPeriod.ALL);
-
-		return this.http.get<RatioResponse[]>(url, { params }).pipe(
-			map<RatioResponse[], Ratio[]>(res => res)
-		);
-	}
-
-	getMaterialsUsage(twinName: string): Observable<StatisticChart> {
+	private getMaterialsUsage(twinName: string, period: Period): Observable<Chart> {
 		const url = `${ this.twinsBaseURL }/materials-usage`;
-		const params = new HttpParams().set('twinName', twinName).set('period', StatisticPeriod.ALL);
+		const params = new HttpParams().set('twinName', twinName).set('period', period);
 
 		return this.http.get<MaterialUsageResponse[]>(url, { params }).pipe(
-			map<MaterialUsageResponse[], StatisticChart>(res => {
-				const chart: StatisticChart =
-					{ name: StatisticType.MATERIALS_USAGE, labels: [], data: [], type: ChartType.DOUGHNUT };
+			map<MaterialUsageResponse[], Chart>(res => {
+				const chart: Chart =
+					{ name: ChartName.MATERIALS_USAGE, labels: [], data: [], type: ChartType.DOUGHNUT };
 
 				res.forEach(usage => {
 					chart.labels.push(usage.name);
@@ -62,30 +47,62 @@ export class TwinsService {
 		);
 	}
 
-	getProcessesInfo(twinName: string): Observable<StatisticChart> {
+	private getProcessesInfo(twinName: string, period: Period): Observable<Chart> {
 		const url = `${ this.twinsBaseURL }/processes-info`;
-		const params = new HttpParams().set('twinName', twinName).set('period', StatisticPeriod.ALL);
+		const params = new HttpParams().set('twinName', twinName).set('period', period);
 
 		return this.http.get<ProcessesInfoResponse>(url, { params }).pipe(
-			map<ProcessesInfoResponse, StatisticChart>(res => {
-				const chart: StatisticChart =
-					{ name: StatisticType.PROCESSES_INFO, labels: Object.keys(res), data: Object.values(res), type: ChartType.DOUGHNUT };
+			map<ProcessesInfoResponse, Chart>(res => {
+				const chart: Chart =
+					{
+						name: ChartName.PROCESSES_INFO, labels: Object.keys(res), data: Object.values(res),
+						type: ChartType.DOUGHNUT
+					};
 
 				return chart;
 			})
 		);
 	}
 
-	getBreakdowns(twinName: string): Observable<StatisticTable> {
+	private getBreakdowns(twinName: string, period: Period): Observable<Table> {
 		const url = `${ this.twinsBaseURL }/breakdowns`;
-		const params = new HttpParams().set('twinName', twinName).set('period', StatisticPeriod.ALL);
+		const params = new HttpParams().set('twinName', twinName).set('period', period);
 
 		return this.http.get<BreakdownResponse[]>(url, { params }).pipe(
-			map<BreakdownResponse[], StatisticTable>(res => {
-				const table: StatisticTable =
-					{ name: StatisticType.BREAKDOWNS, columns: ['errorName', 'timesOccurred'], dataSource: of(res) };
+			map<BreakdownResponse[], Table>(res => {
+				const table: Table =
+					{ name: TableName.BREAKDOWNS, columns: ['errorName', 'timesOccurred'], dataSource: new MatTableDataSource(res) };
 				return table;
 			})
 		);
+	}
+
+	getTwins(): Observable<Twin[]> {
+		return this.http.get<TwinResponse[]>(this.twinsBaseURL).pipe(
+			map<TwinResponse[], Twin[]>(res => res.map(o => {
+				return {
+					name: o.name,
+					series: o.series,
+					model: o.model,
+					state: o.state,
+					img: 'assets/img/machine1.png' // TODO: mapping based on model
+				};
+			}))
+		);
+	}
+
+	getRatios(twinName: string): Observable<RatioResponse[]> {
+		const url = `${ this.twinsBaseURL }/ratios`;
+		const params = new HttpParams().set('twinName', twinName).set('period', Period.ALL);
+
+		return this.http.get<RatioResponse[]>(url, { params });
+	}
+
+	getStatisticChart(twinName: string, name: ChartName, period: Period): Observable<Chart> | undefined {
+		return this.chartCallbacks.get(name)?.call(this, twinName, period);
+	}
+
+	getStatisticTable(twinName: string, name: TableName, period: Period): Observable<Table> | undefined {
+		return this.tableCallbacks.get(name)?.call(this, twinName, period);
 	}
 }
