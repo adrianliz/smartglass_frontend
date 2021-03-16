@@ -1,1 +1,17 @@
-<p>machine works!</p>
+<div class="row row-cols-1 row-cols-md-2 justify-content-center">
+	<app-loading *ngIf="loading; else showStatistics"></app-loading>
+
+	<ng-template #showStatistics>
+		<app-error-message *ngIf="error" [message]="error"></app-error-message>
+
+		<div *ngFor="let chartDefinition of chartDefinitions" class="col mb-4">
+			<app-statistic-card [statisticName]="chartDefinition.name" [chartId]="chartDefinition.id"
+			                    [twinName]="twinName"></app-statistic-card>
+		</div>
+
+		<div *ngFor="let tableDefinition of tableDefinitions" class="col mb-4">
+			<app-statistic-card [statisticName]="tableDefinition.name" [tableId]="tableDefinition.id"
+			                    [twinName]="twinName"></app-statistic-card>
+		</div>
+	</ng-template>
+</div>

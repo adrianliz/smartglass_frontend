@@ -1,4 +1,4 @@
-import { ErrorCause } from './firebase-responses.model';
+import { ErrorCause } from './firebase-response.model';
 
 export interface AuthResponse {
 	ok: boolean;

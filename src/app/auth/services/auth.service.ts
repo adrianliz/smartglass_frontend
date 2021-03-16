@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AuthResponse } from '../models/auth-response.model';
-import { ErrorResponse, IdentityResponse, UserDataResponse } from '../models/firebase-responses.model';
+import { ErrorResponse, IdentityResponse, UserDataResponse } from '../models/firebase-response.model';
 import { User } from '../models/user.model';
 
 @Injectable({
