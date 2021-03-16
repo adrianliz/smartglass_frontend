@@ -31,3 +31,7 @@ También, se podrán generar distintas estadísticas derivadas de los resultados
 - :white_check_mark: v0.6.0 -> Servicio de conexión con el backend y ratios de cada gemelo
 
 ![v0.6.0](screenshots/v0.6.0.png)
+
+- :white_check_mark: v0.7.0 -> Primera versión que consigue mostrar gráficos y/o tablas de distintas estadísticas
+
+![v0.7.0](screenshots/v0.7.0.png)
