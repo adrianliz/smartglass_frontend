@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { errorMessages } from '../../models/auth-response.model';
-import { ErrorCause } from '../../models/firebase-responses.model';
+import { ErrorCause } from '../../models/firebase-response.model';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ErrorMessage, RatioResponse } from '../../models/backend-response.model';
-import { Twin, TwinState } from '../../models/twin.model';
+import { ErrorMessage } from '../../models/backend-response.model';
+import { Ratio } from '../../models/statistic.model';
+import { Twin, TwinStateId } from '../../models/twin.model';
 import { TwinsService } from '../../services/twins.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { TwinsService } from '../../services/twins.service';
 })
 export class TwinCardComponent implements OnInit {
 	@Input() twin!: Twin;
-	ratios: RatioResponse[] = [];
+	ratios: Ratio[] = [];
 	error?: ErrorMessage;
 	loading = false;
 
@@ -23,18 +24,18 @@ export class TwinCardComponent implements OnInit {
 				this.ratios = res;
 				this.loading = false;
 			},
-			err => {
+			() => {
 				this.error = ErrorMessage.RATIOS_ERROR;
 				this.loading = false;
 			}
 		);
 	}
 
-	public getStateStyle(state: TwinState): object {
+	public getStateStyle(stateId: TwinStateId): object {
 		return {
-			'bg-warning': state === TwinState.IN_STANDBY,
-			'bg-success': state === TwinState.DOING_PROCESS,
-			'bg-danger': state === TwinState.IN_BREAKDOWN
+			'bg-warning': stateId === TwinStateId.IN_STANDBY,
+			'bg-success': stateId === TwinStateId.DOING_PROCESS,
+			'bg-danger': stateId === TwinStateId.IN_BREAKDOWN
 		};
 	}
 }

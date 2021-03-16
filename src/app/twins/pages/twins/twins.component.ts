@@ -22,7 +22,7 @@ export class TwinsComponent implements OnInit {
 				this.twins = res;
 				this.loading = false;
 			},
-			err => {
+			() => {
 				this.error = ErrorMessage.TWINS_ERROR;
 				this.loading = false;
 			}
