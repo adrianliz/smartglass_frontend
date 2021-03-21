@@ -1,22 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { MaterialUsageResponse } from '../models/backend-response.model';
-import { Chart, ChartType } from '../models/statistic.model';
+import { ChartModel, ChartType } from '../models/statistic.model';
 
 @Pipe({
-	name: 'materialsUsage'
+	name: 'materialsUsage',
 })
 export class MaterialsUsagePipe implements PipeTransform {
-	transform(value: MaterialUsageResponse[]): Chart {
-		const chart: Chart =
-			{
-				labels: [],
-				data: [],
-				type: ChartType.DOUGHNUT
-			};
+	transform(value: MaterialUsageResponse[]): ChartModel {
+		const chart: ChartModel = {
+			labels: [],
+			data: [],
+			type: ChartType.DOUGHNUT,
+		};
 
-		value.forEach(usage => {
-			chart.labels.push({ id: usage.name, name: usage.name });
-			chart.data.push(usage.usedTimes);
+		value.forEach((material) => {
+			chart.labels.push({ id: material.name, name: material.name });
+			chart.data.push(material.timesUsed);
 		});
 		return chart;
 	}

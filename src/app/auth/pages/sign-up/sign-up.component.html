@@ -5,7 +5,7 @@
 		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>Email</mat-label>
 			<label>
-				<input matInput formControlName="email" type="email">
+				<input matInput formControlName="email" type="email" />
 			</label>
 			<mat-error *ngIf="controls.email.errors">
 				<span *ngIf="controls.email.errors.required">Email requerido</span>
@@ -18,7 +18,7 @@
 		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>Contraseña</mat-label>
 			<label>
-				<input matInput formControlName="password" type="password">
+				<input matInput formControlName="password" type="password" />
 			</label>
 			<mat-error *ngIf="controls.password.errors">
 				<span *ngIf="controls.password.errors.required">Contraseña requerida</span>
@@ -31,7 +31,7 @@
 		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>Confirmar contraseña</mat-label>
 			<label>
-				<input matInput formControlName="confirmedPassword" type="password">
+				<input matInput formControlName="confirmedPassword" type="password" />
 			</label>
 			<mat-error *ngIf="controls.confirmedPassword.errors">
 				<span *ngIf="controls.confirmedPassword.errors.required">Confirmación de contraseña requerida</span>
@@ -48,8 +48,6 @@
 	<app-loading *ngIf="loadingDashboard"></app-loading>
 
 	<div *ngIf="!loadingDashboard" class="text-right m-3">
-		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit">
-			Registrarse
-		</button>
+		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit">Registrarse</button>
 	</div>
 </form>

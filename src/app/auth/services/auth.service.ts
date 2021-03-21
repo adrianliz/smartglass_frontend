@@ -9,7 +9,7 @@ import { ErrorResponse, IdentityResponse, UserDataResponse } from '../models/fir
 import { User } from '../models/user.model';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class AuthService {
 	static readonly ID_TOKEN = 'idToken';
@@ -29,9 +29,10 @@ export class AuthService {
 	private doAuth(url: string, email: string, password: string): Observable<AuthResponse> {
 		const body = { email, password, returnSecureToken: true };
 
-		return this.http.post<IdentityResponse>(url, body, { params: this.firebaseParams })
+		return this.http
+			.post<IdentityResponse>(url, body, { params: this.firebaseParams })
 			.pipe(
-				map(res => {
+				map((res) => {
 					localStorage.setItem(AuthService.ID_TOKEN, res.idToken);
 					return { ok: true };
 				}),
@@ -44,22 +45,23 @@ export class AuthService {
 	}
 
 	signUp(email: string, password: string): Observable<AuthResponse> {
-		const url = `${ this.firebaseBaseURL }/accounts:signUp`;
+		const url = `${this.firebaseBaseURL}/accounts:signUp`;
 		return this.doAuth(url, email, password);
 	}
 
 	login(email: string, password: string): Observable<AuthResponse> {
-		const url = `${ this.firebaseBaseURL }/accounts:signInWithPassword`;
+		const url = `${this.firebaseBaseURL}/accounts:signInWithPassword`;
 		return this.doAuth(url, email, password);
 	}
 
 	validateToken(): Observable<boolean> {
-		const url = `${ this.firebaseBaseURL }/accounts:lookup`;
+		const url = `${this.firebaseBaseURL}/accounts:lookup`;
 		const body = { idToken: localStorage.getItem(AuthService.ID_TOKEN) };
 
-		return this.http.post<UserDataResponse>(url, body, { params: this.firebaseParams })
+		return this.http
+			.post<UserDataResponse>(url, body, { params: this.firebaseParams })
 			.pipe(
-				map(res => {
+				map((res) => {
 					this._user = { displayName: res.displayName, email: res.email };
 					return true;
 				}),

@@ -3,11 +3,10 @@ import { CanActivate, CanLoad, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class AlreadyLoggedInGuard implements CanActivate, CanLoad {
-	constructor(private router: Router) {
-	}
+	constructor(private router: Router) {}
 
 	private alreadyLoggedIn() {
 		if (localStorage.getItem(AuthService.ID_TOKEN) !== null) {
@@ -19,10 +18,10 @@ export class AlreadyLoggedInGuard implements CanActivate, CanLoad {
 	}
 
 	canActivate(): boolean {
-		return ! this.alreadyLoggedIn();
+		return !this.alreadyLoggedIn();
 	}
 
 	canLoad(): boolean {
-		return ! this.alreadyLoggedIn();
+		return !this.alreadyLoggedIn();
 	}
 }

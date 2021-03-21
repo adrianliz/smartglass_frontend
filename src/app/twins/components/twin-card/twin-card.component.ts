@@ -1,26 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ErrorMessage } from '../../models/backend-response.model';
-import { Ratio } from '../../models/statistic.model';
+import { Ratio } from '../../models/ratio.model';
 import { Twin, TwinStateId } from '../../models/twin.model';
-import { TwinsService } from '../../services/twins.service';
+import { TwinService } from '../../services/twin.service';
 
 @Component({
 	selector: 'app-twin-card',
-	templateUrl: './twin-card.component.html'
+	templateUrl: './twin-card.component.html',
 })
 export class TwinCardComponent implements OnInit {
 	@Input() twin!: Twin;
 	ratios: Ratio[] = [];
-	error?: ErrorMessage;
 	loading = false;
+	error?: ErrorMessage;
 
-	constructor(private twinsService: TwinsService) {
-	}
+	constructor(private twinService: TwinService) {}
 
 	ngOnInit(): void {
 		this.loading = true;
-		this.twinsService.getRatios(this.twin.name).subscribe(
-			res => {
+		this.twinService.getRatios(this.twin.name).subscribe(
+			(res) => {
 				this.ratios = res;
 				this.loading = false;
 			},
@@ -35,7 +34,8 @@ export class TwinCardComponent implements OnInit {
 		return {
 			'bg-warning': stateId === TwinStateId.IN_STANDBY,
 			'bg-success': stateId === TwinStateId.DOING_PROCESS,
-			'bg-danger': stateId === TwinStateId.IN_BREAKDOWN
+			'bg-dark': stateId === TwinStateId.IN_BREAKDOWN,
+			'bg-danger': stateId === TwinStateId.OFF,
 		};
 	}
 }

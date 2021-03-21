@@ -1,0 +1,9 @@
+<div class="text-center">
+	<img [src]="model.imageSrc" class="img-thumbnail rounded" [alt]="model.imageAlt" />
+</div>
+<ul class="list-group list-group-flush">
+	<li *ngFor="let description of model.description | keyvalue" class="list-group-item">
+		<b>{{ description.key | number }}</b>
+		{{ description.value }}
+	</li>
+</ul>

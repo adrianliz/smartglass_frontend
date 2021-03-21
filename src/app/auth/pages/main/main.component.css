@@ -3,6 +3,12 @@ mat-card {
 }
 
 .gradient-bg {
-	background: rgb(252,176,69);
-	background: linear-gradient(34deg, rgba(252,176,69,1) 0%, rgba(208,133,110,1) 12%, rgba(131,58,180,1) 90%, rgba(29,195,253,1) 100%);
+	background: rgb(252, 176, 69);
+	background: linear-gradient(
+		34deg,
+		rgba(252, 176, 69, 1) 0%,
+		rgba(208, 133, 110, 1) 12%,
+		rgba(131, 58, 180, 1) 90%,
+		rgba(29, 195, 253, 1) 100%
+	);
 }

@@ -6,19 +6,16 @@ import { TwinsService } from '../../services/twins.service';
 
 @Component({
 	selector: 'app-navigation',
-	templateUrl: './navigation.component.html'
+	templateUrl: './navigation.component.html',
 })
 export class NavigationComponent implements OnInit {
 	@Input() sidenav!: MatSidenav;
 	twins: Twin[] = [];
 
-	constructor(private twinsService: TwinsService, private authService: AuthService) {
-	}
+	constructor(private twinsService: TwinsService, private authService: AuthService) {}
 
 	ngOnInit(): void {
-		this.twinsService.getTwins().subscribe(
-			res => this.twins = res
-		);
+		this.twinsService.getTwins().subscribe((res) => (this.twins = res));
 	}
 
 	logout() {

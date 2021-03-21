@@ -4,11 +4,10 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ValidateTokenGuard implements CanActivate, CanLoad {
-	constructor(private authService: AuthService) {
-	}
+	constructor(private authService: AuthService) {}
 
 	private validateToken() {
 		return this.authService.validateToken();

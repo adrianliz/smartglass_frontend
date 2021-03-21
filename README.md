@@ -35,3 +35,10 @@ También, se podrán generar distintas estadísticas derivadas de los resultados
 - :white_check_mark: v0.7.0 -> Primera versión que consigue mostrar gráficos y/o tablas de distintas estadísticas
 
 ![v0.7.0](screenshots/v0.7.0.png)
+
+- :white_check_mark: v0.7.1 -> Carga dinámica de estadísticas, refactorización, loaders y mensajes de error
+
+![v0.7.1_1](screenshots/v0.7.1_1.png)
+![v0.7.1_2](screenshots/v0.7.1_2.png)
+![v0.7.1_3](screenshots/v0.7.1_3.png)
+

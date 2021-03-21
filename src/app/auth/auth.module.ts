@@ -18,8 +18,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 		ReactiveFormsModule,
 		SharedModule,
 		MaterialModule,
-		SweetAlert2Module
-	]
+		SweetAlert2Module,
+	],
 })
-export class AuthModule {
-}
+export class AuthModule {}

@@ -6,27 +6,24 @@ import { ValidateTokenGuard } from './auth/guards/validate-token.guard';
 const routes: Routes = [
 	{
 		path: 'auth',
-		loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+		loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
 		canActivate: [AlreadyLoggedInGuard],
-		canLoad: [AlreadyLoggedInGuard]
+		canLoad: [AlreadyLoggedInGuard],
 	},
 	{
 		path: 'dashboard',
-		loadChildren: () => import('./twins/twins.module').then(m => m.TwinsModule),
+		loadChildren: () => import('./twins/twins.module').then((m) => m.TwinsModule),
 		canActivate: [ValidateTokenGuard],
-		canLoad: [ValidateTokenGuard]
+		canLoad: [ValidateTokenGuard],
 	},
 	{
 		path: '**',
-		redirectTo: 'auth'
-	}
+		redirectTo: 'auth',
+	},
 ];
 
 @NgModule({
-	imports: [
-		RouterModule.forRoot(routes)
-	],
-	exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

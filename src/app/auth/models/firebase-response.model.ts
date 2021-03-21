@@ -15,9 +15,9 @@ export interface UserDataResponse {
 export interface ErrorResponse {
 	error: {
 		error: {
-			code: number,
-			message: ErrorCause
-		}
+			code: number;
+			message: ErrorCause;
+		};
 	};
 }
 
@@ -31,5 +31,5 @@ export enum ErrorCause {
 	USER_DISABLED = 'USER_DISABLED',
 	TOKEN_EXPIRED = 'TOKEN_EXPIRED',
 	USER_NOT_FOUND = 'USER_NOT_FOUND',
-	INVALID_ID_TOKEN = 'INVALID_ID_TOKEN'
+	INVALID_ID_TOKEN = 'INVALID_ID_TOKEN',
 }

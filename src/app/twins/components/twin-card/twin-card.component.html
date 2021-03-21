@@ -1,28 +1,32 @@
 <mat-card class="mat-elevation-z8 rounded-lg">
 	<mat-card-header>
-		<div mat-card-avatar [ngClass]="getStateStyle(twin.state.id)"></div>
-		<mat-card-title>{{twin.name}}</mat-card-title>
-		<mat-card-subtitle>{{twin.state.name}}</mat-card-subtitle>
+		<div mat-card-avatar [ngClass]="getStateStyle(twin.currentState.id)"></div>
+		<mat-card-title>{{ twin.name }}</mat-card-title>
+		<mat-card-subtitle>{{ twin.currentState.name }}</mat-card-subtitle>
 	</mat-card-header>
-	<img mat-card-image [src]="twin.img" [alt]="twin.name" class="m-2 img-fluid">
+	<img mat-card-image [src]="twin.img" [alt]="twin.name" class="m-2 img-fluid" />
 	<mat-card-content>
 		<div class="text-secondary mb-4">
-			<p><b>Nº SERIE:</b> {{twin.series}}</p>
-			<p><b>MODELO:</b> {{twin.model}}</p>
+			<p><b>Nº SERIE:</b> {{ twin.machineSeries }}</p>
+			<p><b>MODELO:</b> {{ twin.machineModel }}</p>
 		</div>
 
 		<p>Ratios</p>
-		<hr class="border-dark">
+		<hr class="border-dark" />
 		<div class="text-center">
-			<app-loading *ngIf="loading; else showGauges"></app-loading>
+			<app-loading *ngIf="loading"></app-loading>
+			<app-error-message *ngIf="!loading && error" [message]="error"></app-error-message>
 
-			<ng-template #showGauges>
-				<app-error-message *ngIf="error" [message]="error"></app-error-message>
-
-				<ngx-gauge *ngFor="let ratio of ratios" class="ml-3" [value]="ratio.value | percentage"
-				           [label]="ratio.definition.name"
-				           [size]="120" append="%"></ngx-gauge>
-			</ng-template>
+			<ng-container *ngIf="!loading && !error">
+				<ngx-gauge
+					*ngFor="let ratio of ratios"
+					[value]="ratio.value | percentage"
+					[label]="ratio.definition.name"
+					[size]="120"
+					append="%"
+					class="ml-3"
+				></ngx-gauge>
+			</ng-container>
 		</div>
 	</mat-card-content>
 	<mat-card-actions>

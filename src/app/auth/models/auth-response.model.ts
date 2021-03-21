@@ -15,5 +15,5 @@ export const errorMessages = new Map<ErrorCause, string>([
 	[ErrorCause.USER_NOT_FOUND, 'No se ha encontrado el usuario'],
 	[ErrorCause.TOKEN_EXPIRED, 'El token ha expirado'],
 	[ErrorCause.INVALID_ID_TOKEN, 'El token es inválido'],
-	[ErrorCause.UNDEFINED, 'Ha ocurrido un error']
+	[ErrorCause.UNDEFINED, 'Ha ocurrido un error'],
 ]);

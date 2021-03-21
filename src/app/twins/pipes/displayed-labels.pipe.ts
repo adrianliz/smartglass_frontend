@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Chart } from '../models/statistic.model';
+import { ChartModel } from '../models/statistic.model';
 
 @Pipe({
-	name: 'displayedLabels'
+	name: 'displayedLabels',
 })
 export class DisplayedLabelsPipe implements PipeTransform {
-	transform(value: Chart): string[] {
-		return value.labels.map(label => label.name);
+	transform(value: ChartModel): string[] {
+		return value.labels.map((label) => label.name);
 	}
 }

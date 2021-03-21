@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Table } from '../models/statistic.model';
+import { TableModel } from '../models/statistic.model';
 
 @Pipe({
-	name: 'tableKeys'
+	name: 'tableKeys',
 })
 export class TableKeysPipe implements PipeTransform {
-	transform(value: Table): string[] {
-		return value.columns.map(column => column.id);
+	transform(value: TableModel): string[] {
+		return value.columns.map((column) => column.id);
 	}
 }

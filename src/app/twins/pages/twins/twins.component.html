@@ -1,18 +1,11 @@
-<div class="text-right mb-3">
-	<button mat-raised-button color="primary">
-		<mat-icon>add</mat-icon>
-		Add
-	</button>
+<div class="text-right">
+	<app-refresh (click)="loadTwins()"></app-refresh>
 </div>
+<app-loading *ngIf="loading"></app-loading>
+<app-error-message *ngIf="!loading && error" [message]="error"></app-error-message>
 
-<div class="row row-cols-1 row-cols-md-3 justify-content-center">
-	<app-loading *ngIf="loading; else showTwins"></app-loading>
-
-	<ng-template #showTwins>
-		<app-error-message *ngIf="error" [message]="error"></app-error-message>
-
-		<div *ngFor="let twin of twins" class="col mb-4">
-			<app-twin-card [twin]="twin"></app-twin-card>
-		</div>
-	</ng-template>
+<div *ngIf="!loading && !error" class="justify-content-center row row-cols-1 row-cols-md-3">
+	<div *ngFor="let twin of twins" class="col mb-4">
+		<app-twin-card [twin]="twin"></app-twin-card>
+	</div>
 </div>

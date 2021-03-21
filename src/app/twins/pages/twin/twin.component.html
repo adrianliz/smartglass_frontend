@@ -1,17 +1,20 @@
-<div class="row row-cols-1 row-cols-md-2 justify-content-center">
-	<app-loading *ngIf="loading; else showStatistics"></app-loading>
+<div class="row mb-3">
+	<div class="col text-left">
+		<button mat-raised-button routerLink="/twins" color="primary" class="mat-elevation-z8">
+			<mat-icon>arrow_back_ios</mat-icon>
+			Volver
+		</button>
+	</div>
+	<div class="col text-right">
+		<app-refresh *ngIf="showRefresh" (click)="refreshStatistics()"></app-refresh>
+	</div>
+</div>
 
-	<ng-template #showStatistics>
-		<app-error-message *ngIf="error" [message]="error"></app-error-message>
+<app-loading *ngIf="loading"></app-loading>
+<app-error-message *ngIf="!loading && error" [message]="error"></app-error-message>
 
-		<div *ngFor="let chartDefinition of chartDefinitions" class="col mb-4">
-			<app-statistic-card [statisticName]="chartDefinition.name" [chartId]="chartDefinition.id"
-			                    [twinName]="twinName"></app-statistic-card>
-		</div>
-
-		<div *ngFor="let tableDefinition of tableDefinitions" class="col mb-4">
-			<app-statistic-card [statisticName]="tableDefinition.name" [tableId]="tableDefinition.id"
-			                    [twinName]="twinName"></app-statistic-card>
-		</div>
-	</ng-template>
+<div *ngIf="!loading && !error" class="row row-cols-1 row-cols-md-2">
+	<div *ngFor="let statistic of statistics" class="col mb-4">
+		<app-statistic-card [statistic]="statistic" [twinName]="twinName"></app-statistic-card>
+	</div>
 </div>

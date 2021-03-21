@@ -5,7 +5,7 @@ export function matcher(controlName: string, matchingControlName: string) {
 		const control = controls.get(controlName);
 		const matchingControl = controls.get(matchingControlName);
 
-		if ((matchingControl?.errors)  && (! matchingControl.errors.mustMatch)) {
+		if (matchingControl?.errors && !matchingControl.errors.mustMatch) {
 			return null;
 		}
 

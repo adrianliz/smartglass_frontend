@@ -5,20 +5,25 @@ import { TwinsService } from '../../services/twins.service';
 
 @Component({
 	selector: 'app-twins',
-	templateUrl: './twins.component.html'
+	templateUrl: './twins.component.html',
 })
 export class TwinsComponent implements OnInit {
 	twins: Twin[] = [];
-	error?: ErrorMessage;
 	loading = false;
+	error?: ErrorMessage;
 
-	constructor(private twinsService: TwinsService) {
-	}
+	constructor(private twinsService: TwinsService) {}
 
 	ngOnInit(): void {
+		this.loadTwins();
+	}
+
+	loadTwins() {
+		this.error = undefined;
 		this.loading = true;
+		this.twins = [];
 		this.twinsService.getTwins().subscribe(
-			res => {
+			(res) => {
 				this.twins = res;
 				this.loading = false;
 			},
