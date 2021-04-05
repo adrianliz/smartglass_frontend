@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ErrorMessage } from '../../models/backend-response.model';
+import { ErrorMessage } from '../../models/consts';
 import { TwinModel } from '../../models/twin.model';
 import { TwinsService } from '../../services/twins.service';
 

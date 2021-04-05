@@ -1,4 +1,4 @@
-import { RatioId } from './backend-response.model';
+import { RatioId } from './consts';
 
 export interface Ratio {
 	definition: {

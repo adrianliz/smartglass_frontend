@@ -1,19 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { RatioResponse } from '../models/backend-response.model';
-import { ratioNames } from '../models/consts';
+import { RATIO_NAMES } from '../models/consts';
 import { Ratio } from '../models/ratio.model';
 
 @Pipe({
 	name: 'ratio',
 })
 export class RatioPipe implements PipeTransform {
-	transform(value: RatioResponse): Ratio {
+	transform(ratio: RatioResponse): Ratio {
 		return {
 			definition: {
-				id: value.ratio,
-				name: ratioNames.get(value.ratio),
+				id: ratio.ratio,
+				name: RATIO_NAMES.get(ratio.ratio),
 			},
-			value: value.value,
+			value: ratio.value,
 		} as Ratio;
 	}
 }

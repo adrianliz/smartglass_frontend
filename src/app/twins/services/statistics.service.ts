@@ -1,20 +1,23 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import {
 	ErrorResponse,
+	MachineUsageResponse,
 	MaterialResponse,
 	OptimizationResponse,
 	RatioResponse,
 	TimeDistributionResponse,
 	ToolsResponse,
 } from '../models/backend-response.model';
-import { PeriodId } from '../models/period.model';
+import { API_DATE_FORMAT, DATE_RANGES, PeriodId, StatisticId } from '../models/consts';
 import { Ratio } from '../models/ratio.model';
-import { ChartModel, ImageModel, StatisticId, TableModel } from '../models/statistic.model';
-import { BreakdownsPipe } from '../pipes/breakdowns.pipe';
+import { ChartModel, ImageModel, TableModel } from '../models/statistic.model';
+import { DaysSplitterPipe } from '../pipes/days-splitter.pipe';
+import { ErrorsPipe } from '../pipes/errors.pipe';
+import { MachineUsagePipe } from '../pipes/machine-usage.pipe';
 import { MaterialsPipe } from '../pipes/materials.pipe';
 import { OptimizationsPipe } from '../pipes/optimizations.pipe';
 import { RatioPipe } from '../pipes/ratio.pipe';
@@ -31,16 +34,19 @@ export class StatisticsService {
 
 	constructor(
 		private http: HttpClient,
+		private daysSplitterPipe: DaysSplitterPipe,
 		private ratioPipe: RatioPipe,
-		private materialsUsagePipe: MaterialsPipe,
+		private materialsPipe: MaterialsPipe,
+		private machineUsagePipe: MachineUsagePipe,
+		private optimizationsPipe: OptimizationsPipe,
+		private toolsPipe: ToolsPipe,
 		private timeDistributionPipe: TimeDistributionPipe,
-		private breakdownsPipe: BreakdownsPipe,
-		private toolsInfoPipe: ToolsPipe,
-		private optimizationsPipe: OptimizationsPipe
+		private errorsPipe: ErrorsPipe
 	) {
 		this.statisticsBaseURL = environment.statisticsBaseURL;
 		this.statisticModels = new Map();
 		this.statisticModels.set(StatisticId.MATERIALS_USED, this.getMaterialsUsed);
+		this.statisticModels.set(StatisticId.MACHINE_USAGE, this.getMachineUsage);
 		this.statisticModels.set(StatisticId.OPTIMIZATIONS_PROCESSED, this.getOptimizationsProcessed);
 		this.statisticModels.set(StatisticId.TOOLS_INFO, this.getToolsInfo);
 		this.statisticModels.set(StatisticId.TIME_DISTRIBUTION, this.getTimeDistribution);
@@ -54,8 +60,31 @@ export class StatisticsService {
 		return this.http
 			.get<MaterialResponse[]>(url, { params })
 			.pipe(
-				map<MaterialResponse[], ChartModel>((res) => this.materialsUsagePipe.transform(res))
+				map<MaterialResponse[], ChartModel>((res) => this.materialsPipe.transform(res))
 			);
+	}
+
+	private getMachineUsage(twinName: string, periodId: PeriodId): Observable<ChartModel> {
+		const dateRange = DATE_RANGES.get(periodId);
+		const machineUsages: Observable<MachineUsageResponse>[] = [];
+
+		if (dateRange) {
+			const url = `${this.statisticsBaseURL}/${twinName}/machine-usage`;
+
+			this.daysSplitterPipe.transform(dateRange).forEach((day) => {
+				const params = new HttpParams()
+					.set('startDate', day.startDate.format(API_DATE_FORMAT))
+					.set('endDate', day.endDate.format(API_DATE_FORMAT));
+
+				machineUsages.push(
+					this.http.get<MachineUsageResponse>(url, { params })
+				);
+			});
+		}
+
+		return forkJoin(machineUsages).pipe(
+			map<MachineUsageResponse[], ChartModel>((res) => this.machineUsagePipe.transform(res))
+		);
 	}
 
 	private getOptimizationsProcessed(twinName: string, periodId: PeriodId): Observable<TableModel> {
@@ -76,7 +105,7 @@ export class StatisticsService {
 		return this.http
 			.get<ToolsResponse>(url, { params })
 			.pipe(
-				map<ToolsResponse, ImageModel>((res) => this.toolsInfoPipe.transform(res))
+				map<ToolsResponse, ImageModel>((res) => this.toolsPipe.transform(res))
 			);
 	}
 
@@ -98,13 +127,13 @@ export class StatisticsService {
 		return this.http
 			.get<ErrorResponse[]>(url, { params })
 			.pipe(
-				map<ErrorResponse[], TableModel>((res) => this.breakdownsPipe.transform(res))
+				map<ErrorResponse[], TableModel>((res) => this.errorsPipe.transform(res))
 			);
 	}
 
 	getRatios(twinName: string): Observable<Ratio[]> {
 		const url = `${this.statisticsBaseURL}/${twinName}/ratios`;
-		const params = new HttpParams().set('period', PeriodId.ALL);
+		const params = new HttpParams().set('period', PeriodId.THIS_YEAR);
 
 		return this.http
 			.get<RatioResponse[]>(url, { params })

@@ -1,8 +1,4 @@
-export enum PeriodId {
-	ALL = 'ALL',
-	THIS_YEAR = 'THIS_YEAR',
-	THIS_MONTH = 'THIS_MONTH',
-}
+import { PeriodId } from './consts';
 
 export interface Period {
 	id: PeriodId;

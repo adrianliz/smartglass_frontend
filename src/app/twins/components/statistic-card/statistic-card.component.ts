@@ -1,8 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, Input, ViewChild } from '@angular/core';
 import { StatisticItemDirective } from '../../directives/statistic-item.directive';
-import { ErrorMessage } from '../../models/backend-response.model';
-import { periods } from '../../models/consts';
-import { PeriodId } from '../../models/period.model';
+import { ALLOWED_PERIODS, ErrorMessage, PeriodId } from '../../models/consts';
 import { Statistic, StatisticComponent } from '../../models/statistic.model';
 import { StatisticsService } from '../../services/statistics.service';
 
@@ -13,21 +11,21 @@ import { StatisticsService } from '../../services/statistics.service';
 export class StatisticCardComponent implements AfterViewInit {
 	@Input() statistic!: Statistic;
 	@Input() twinName!: string;
-	periods = periods;
+	periods = ALLOWED_PERIODS;
 	loading?: boolean;
 	error?: ErrorMessage;
 
-	@ViewChild(StatisticItemDirective, { static: false })
+	@ViewChild(StatisticItemDirective, { static: true })
 	statisticItem!: StatisticItemDirective;
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
 		private changeDetectorRef: ChangeDetectorRef,
-		private twinService: StatisticsService
+		private statisticsService: StatisticsService
 	) {}
 
 	ngAfterViewInit(): void {
-		this.loadStatistic(periods[0].id);
+		this.loadStatistic(ALLOWED_PERIODS[0].id);
 		/* MUST detect changes, because we are updating error and loading parameters in
 		 * afterViewInit, where angular DONT check changes
 		 */
@@ -42,7 +40,7 @@ export class StatisticCardComponent implements AfterViewInit {
 
 		this.error = undefined;
 		this.loading = true;
-		this.twinService.getStatisticModel(this.twinName, this.statistic.id, periodId)?.subscribe(
+		this.statisticsService.getStatisticModel(this.twinName, this.statistic.id, periodId)?.subscribe(
 			(res) => {
 				const componentRef = viewContainerRef.createComponent<StatisticComponent>(componentFactory);
 				componentRef.instance.model = res;
