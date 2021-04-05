@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { TwinResponse } from '../models/backend-response.model';
-import { Twin } from '../models/twin.model';
+import { TwinModelResponse } from '../models/backend-response.model';
+import { TwinModel } from '../models/twin.model';
 import { TwinPipe } from '../pipes/twin.pipe';
 
 @Injectable()
@@ -15,17 +15,19 @@ export class TwinsService {
 		this.twinsBaseURL = environment.twinsBaseURL;
 	}
 
-	getTwins(): Observable<Twin[]> {
-		return this.http.get<TwinResponse[]>(this.twinsBaseURL).pipe(
-			map<TwinResponse[], Twin[]>((res) => res.map((rawResponse) => this.twinPipe.transform(rawResponse)))
+	getTwinsModels(): Observable<TwinModel[]> {
+		const url = `${this.twinsBaseURL}/models`;
+
+		return this.http.get<TwinModelResponse[]>(url).pipe(
+			map<TwinModelResponse[], TwinModel[]>((res) => res.map((rawResponse) => this.twinPipe.transform(rawResponse)))
 		);
 	}
 
-	getTwin(twinName: string): Observable<Twin> {
-		const url = `${this.twinsBaseURL}/${twinName}`;
+	getTwinModel(twinName: string): Observable<TwinModel> {
+		const url = `${this.twinsBaseURL}/${twinName}/model`;
 
-		return this.http.get<TwinResponse>(url).pipe(
-			map<TwinResponse, Twin>((res) => this.twinPipe.transform(res))
+		return this.http.get<TwinModelResponse>(url).pipe(
+			map<TwinModelResponse, TwinModel>((res) => this.twinPipe.transform(res))
 		);
 	}
 }

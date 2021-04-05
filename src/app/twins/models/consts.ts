@@ -27,17 +27,12 @@ export const periods: Period[] = [
 
 export const statistics: Statistic[] = [
 	{
-		id: StatisticId.MATERIALS_USAGE,
+		id: StatisticId.MATERIALS_USED,
 		name: 'Materiales procesados',
 		component: StatisticChartComponent,
 	},
 	{
-		id: StatisticId.USAGE_TIME,
-		name: 'Uso del tiempo',
-		component: StatisticChartComponent,
-	},
-	{
-		id: StatisticId.OPTIMIZATIONS,
+		id: StatisticId.OPTIMIZATIONS_PROCESSED,
 		name: 'Optimizaciones realizadas',
 		component: StatisticTableComponent,
 	},
@@ -47,7 +42,12 @@ export const statistics: Statistic[] = [
 		component: StatisticImageComponent,
 	},
 	{
-		id: StatisticId.BREAKDOWNS,
+		id: StatisticId.TIME_DISTRIBUTION,
+		name: 'Distribución del tiempo',
+		component: StatisticChartComponent,
+	},
+	{
+		id: StatisticId.ERRORS_PRODUCED,
 		name: 'Paradas producidas',
 		component: StatisticTableComponent,
 	},

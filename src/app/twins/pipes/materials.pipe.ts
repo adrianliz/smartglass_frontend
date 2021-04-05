@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MaterialUsageResponse } from '../models/backend-response.model';
+import { MaterialResponse } from '../models/backend-response.model';
 import { ChartModel, ChartType } from '../models/statistic.model';
 
 @Pipe({
-	name: 'materialsUsage',
+	name: 'materials',
 })
-export class MaterialsUsagePipe implements PipeTransform {
-	transform(value: MaterialUsageResponse[]): ChartModel {
+export class MaterialsPipe implements PipeTransform {
+	transform(value: MaterialResponse[]): ChartModel {
 		const chart: ChartModel = {
 			labels: [],
 			data: [],

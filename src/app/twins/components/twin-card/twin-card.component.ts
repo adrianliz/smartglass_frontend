@@ -1,20 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ErrorMessage } from '../../models/backend-response.model';
 import { Ratio } from '../../models/ratio.model';
-import { Twin, TwinStateId } from '../../models/twin.model';
-import { TwinService } from '../../services/twin.service';
+import { TwinModel, TwinStateId } from '../../models/twin.model';
+import { StatisticsService } from '../../services/statistics.service';
 
 @Component({
 	selector: 'app-twin-card',
 	templateUrl: './twin-card.component.html',
 })
 export class TwinCardComponent implements OnInit {
-	@Input() twin!: Twin;
+	@Input() twin!: TwinModel;
 	ratios: Ratio[] = [];
 	loading = false;
 	error?: ErrorMessage;
 
-	constructor(private twinService: TwinService) {}
+	constructor(private twinService: StatisticsService) {}
 
 	ngOnInit(): void {
 		this.loading = true;

@@ -2,11 +2,11 @@ import { Type } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 export enum StatisticId {
-	MATERIALS_USAGE = 'MATERIALS_USAGE',
-	USAGE_TIME = 'USAGE_TIME',
-	OPTIMIZATIONS = 'OPTIMIZATIONS',
+	MATERIALS_USED = 'MATERIALS_USED',
+	OPTIMIZATIONS_PROCESSED = 'OPTIMIZATIONS_PROCESSED',
 	TOOLS_INFO = 'TOOLS_INFO',
-	BREAKDOWNS = 'BREAKDOWNS',
+	TIME_DISTRIBUTION = 'TIME_DISTRIBUTION',
+	ERRORS_PRODUCED = 'ERRORS_PRODUCED',
 }
 
 export interface Statistic {
@@ -43,5 +43,5 @@ export interface TableModel {
 export interface ImageModel {
 	imageSrc: string;
 	imageAlt: string;
-	description: Map<number, string>;
+	description: Map<string, number>;
 }

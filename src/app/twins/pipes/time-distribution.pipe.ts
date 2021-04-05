@@ -1,33 +1,25 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UsageTime, UsageTimeResponse } from '../models/backend-response.model';
+import { TimeDistributionResponse, TimeDistribution } from '../models/backend-response.model';
 import { ChartModel, ChartType } from '../models/statistic.model';
 
 @Pipe({
-	name: 'usageTime',
+	name: 'timeDistributionPipe',
 })
-export class UsageTimePipe implements PipeTransform {
-	transform(value: UsageTimeResponse): ChartModel {
+export class TimeDistributionPipe implements PipeTransform {
+	transform(value: TimeDistributionResponse): ChartModel {
 		const chart: ChartModel = {
 			labels: [
 				{
-					id: UsageTime.PROCESSING_GLASS,
+					id: TimeDistribution.PROCESSING_GLASS,
 					name: 'Horas procesando hojas',
 				},
 				{
-					id: UsageTime.LOADING_GLASS,
+					id: TimeDistribution.LOADING_GLASS,
 					name: 'Horas cargando hojas',
 				},
 				{
-					id: UsageTime.STANDBY,
+					id: TimeDistribution.STANDBY,
 					name: 'Horas en standby',
-				},
-				{
-					id: UsageTime.BREAKDOWN,
-					name: 'Horas en parada',
-				},
-				{
-					id: UsageTime.OFF,
-					name: 'Horas apagada',
 				},
 			],
 			data: [],

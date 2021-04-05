@@ -1,13 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TwinResponse } from '../models/backend-response.model';
+import { TwinModelResponse } from '../models/backend-response.model';
 import { stateNames } from '../models/consts';
-import { Twin } from '../models/twin.model';
+import { TwinModel } from '../models/twin.model';
 
 @Pipe({
 	name: 'twin',
 })
 export class TwinPipe implements PipeTransform {
-	transform(value: TwinResponse): Twin {
+	transform(value: TwinModelResponse): TwinModel {
 		return {
 			name: value.twinName,
 			machineSeries: value.machineSeries,
@@ -17,6 +17,6 @@ export class TwinPipe implements PipeTransform {
 				name: stateNames.get(value.currentState),
 			},
 			img: 'assets/img/machine1.png', // TODO: mapping based on model and series
-		} as Twin;
+		} as TwinModel;
 	}
 }

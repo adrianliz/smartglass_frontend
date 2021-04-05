@@ -18,15 +18,15 @@ import { TwinComponent } from './pages/twin/twin.component';
 import { TwinsComponent } from './pages/twins/twins.component';
 import { BreakdownsPipe } from './pipes/breakdowns.pipe';
 import { DisplayedLabelsPipe } from './pipes/displayed-labels.pipe';
-import { MaterialsUsagePipe } from './pipes/materials-usage.pipe';
+import { MaterialsPipe } from './pipes/materials.pipe';
 import { OptimizationsPipe } from './pipes/optimizations.pipe';
 import { PercentagePipe } from './pipes/percentage.pipe';
 import { RatioPipe } from './pipes/ratio.pipe';
 import { TableKeysPipe } from './pipes/table-keys.pipe';
-import { ToolsInfoPipe } from './pipes/tools-info.pipe';
+import { TimeDistributionPipe } from './pipes/time-distribution.pipe';
+import { ToolsPipe } from './pipes/tools.pipe';
 import { TwinPipe } from './pipes/twin.pipe';
-import { UsageTimePipe } from './pipes/usage-time.pipe';
-import { TwinService } from './services/twin.service';
+import { StatisticsService } from './services/statistics.service';
 import { TwinsService } from './services/twins.service';
 import { TwinsRoutingModule } from './twins-routing.module';
 
@@ -44,25 +44,25 @@ import { TwinsRoutingModule } from './twins-routing.module';
 		PercentagePipe,
 		TwinPipe,
 		RatioPipe,
-		MaterialsUsagePipe,
-		UsageTimePipe,
+		MaterialsPipe,
+		TimeDistributionPipe,
 		BreakdownsPipe,
 		TableKeysPipe,
 		DisplayedLabelsPipe,
 		OptimizationsPipe,
-		ToolsInfoPipe,
+		ToolsPipe,
 		StatisticItemDirective,
 	],
 	imports: [CommonModule, TwinsRoutingModule, SharedModule, MaterialModule, NgxGaugeModule, ChartsModule],
 	providers: [
 		TwinsService,
-		TwinService,
+		StatisticsService,
 		TwinPipe,
 		RatioPipe,
-		MaterialsUsagePipe,
-		UsageTimePipe,
+		MaterialsPipe,
+		TimeDistributionPipe,
 		OptimizationsPipe,
-		ToolsInfoPipe,
+		ToolsPipe,
 		BreakdownsPipe,
 	],
 })

@@ -4,7 +4,7 @@ import { ErrorMessage } from '../../models/backend-response.model';
 import { periods } from '../../models/consts';
 import { PeriodId } from '../../models/period.model';
 import { Statistic, StatisticComponent } from '../../models/statistic.model';
-import { TwinService } from '../../services/twin.service';
+import { StatisticsService } from '../../services/statistics.service';
 
 @Component({
 	selector: 'app-statistic-card',
@@ -23,7 +23,7 @@ export class StatisticCardComponent implements AfterViewInit {
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
 		private changeDetectorRef: ChangeDetectorRef,
-		private twinService: TwinService
+		private twinService: StatisticsService
 	) {}
 
 	ngAfterViewInit(): void {

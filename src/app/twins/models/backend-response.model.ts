@@ -1,6 +1,6 @@
 import { TwinStateId } from './twin.model';
 
-export interface TwinResponse {
+export interface TwinModelResponse {
 	twinName: string;
 	machineSeries: string;
 	machineModel: string;
@@ -18,25 +18,9 @@ export interface RatioResponse {
 	value: number;
 }
 
-export interface MaterialUsageResponse {
+export interface MaterialResponse {
 	name: string;
 	timesUsed: number;
-}
-
-export enum UsageTime {
-	PROCESSING_GLASS = 'processingGlassHours',
-	LOADING_GLASS = 'loadingGlassHours',
-	STANDBY = 'standbyHours',
-	BREAKDOWN = 'breakdownHours',
-	OFF = 'offHours',
-}
-
-export interface UsageTimeResponse {
-	processingGlassHours: UsageTime.PROCESSING_GLASS;
-	loadingGlassHours: UsageTime.LOADING_GLASS;
-	standbyHours: UsageTime.STANDBY;
-	breakdownHours: UsageTime.BREAKDOWN;
-	offHours: UsageTime.OFF;
 }
 
 export interface OptimizationResponse {
@@ -45,13 +29,25 @@ export interface OptimizationResponse {
 	piecesProcessed: number;
 }
 
-export interface ToolsInfoResponse {
+export interface ToolsResponse {
 	toolDistanceCovered: number;
 	toolAngle: number;
 	wheelDiameter: number;
 }
 
-export interface BreakdownResponse {
+export enum TimeDistribution {
+	PROCESSING_GLASS = 'processingGlassHours',
+	LOADING_GLASS = 'loadingGlassHours',
+	STANDBY = 'standbyHours',
+}
+
+export interface TimeDistributionResponse {
+	processingGlassHours: TimeDistribution.PROCESSING_GLASS;
+	loadingGlassHours: TimeDistribution.LOADING_GLASS;
+	standbyHours: TimeDistribution.STANDBY;
+}
+
+export interface ErrorResponse {
 	cause: string;
 	timesOccurred: number;
 }

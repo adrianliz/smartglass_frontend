@@ -25,7 +25,7 @@ export class TwinComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loading = true;
-		this.activatedRoute.params.pipe(switchMap(({ twinName }) => this.twinsService.getTwin(twinName))).subscribe(
+		this.activatedRoute.params.pipe(switchMap(({ twinName }) => this.twinsService.getTwinModel(twinName))).subscribe(
 			(res) => {
 				this.twinName = res.name;
 				this.statistics = statistics;

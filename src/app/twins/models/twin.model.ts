@@ -10,7 +10,7 @@ export interface TwinState {
 	name: string;
 }
 
-export interface Twin {
+export interface TwinModel {
 	name: string;
 	machineSeries: string;
 	machineModel: string;

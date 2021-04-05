@@ -5,7 +5,7 @@
 <app-error-message *ngIf="!loading && error" [message]="error"></app-error-message>
 
 <div *ngIf="!loading && !error" class="justify-content-center row row-cols-1 row-cols-md-3">
-	<div *ngFor="let twin of twins" class="col mb-4">
+	<div *ngFor="let twin of twinsModels" class="col mb-4">
 		<app-twin-card [twin]="twin"></app-twin-card>
 	</div>
 </div>
