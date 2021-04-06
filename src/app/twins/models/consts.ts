@@ -43,16 +43,19 @@ export const RATIO_NAMES = new Map<RatioId, string>([
 export const enum PeriodId {
 	THIS_YEAR = 'THIS_YEAR',
 	THIS_MONTH = 'THIS_MONTH',
+	THIS_WEEK = 'THIS_WEEK',
 }
 
 export const ALLOWED_PERIODS: Period[] = [
 	{ id: PeriodId.THIS_YEAR, name: 'Este año' },
 	{ id: PeriodId.THIS_MONTH, name: 'Este mes' },
+	{ id: PeriodId.THIS_WEEK, name: 'Esta semana' },
 ];
 
 export const DATE_RANGES = new Map<PeriodId, DateRange>([
 	[PeriodId.THIS_YEAR, { startDate: dayjs().startOf('year'), endDate: dayjs().endOf('year') }],
 	[PeriodId.THIS_MONTH, { startDate: dayjs().startOf('month'), endDate: dayjs().endOf('month') }],
+	[PeriodId.THIS_WEEK, { startDate: dayjs().startOf('week'), endDate: dayjs().endOf('week') }],
 ]);
 
 export const API_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';

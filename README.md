@@ -42,3 +42,7 @@ También, se podrán generar distintas estadísticas derivadas de los resultados
 ![v0.7.1_2](screenshots/v0.7.1_2.png)
 ![v0.7.1_3](screenshots/v0.7.1_3.png)
 
+- :white_check_mark: v0.8.0 -> Añadido gráfico de líneas para mostrar el uso de la máquina
+
+![v0.8.0](screenshots/v0.8.0.png)
+

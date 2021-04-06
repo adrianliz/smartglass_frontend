@@ -18,7 +18,7 @@ export interface MaterialResponse {
 }
 
 export interface MachineUsageResponse {
-	date: string;
+	timestamp: number;
 	workingHours: number;
 	onHours: number;
 }

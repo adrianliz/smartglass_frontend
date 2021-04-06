@@ -15,7 +15,7 @@ export class TwinsService {
 		this.twinsBaseURL = environment.twinsBaseURL;
 	}
 
-	getTwinsModels(): Observable<TwinModel[]> {
+	getTwinModels(): Observable<TwinModel[]> {
 		const url = `${this.twinsBaseURL}/models`;
 
 		return this.http.get<TwinModelResponse[]>(url).pipe(

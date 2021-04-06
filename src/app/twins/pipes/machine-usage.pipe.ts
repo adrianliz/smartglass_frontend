@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ChartPoint } from 'chart.js';
-import * as dayjs from 'dayjs';
 import { MachineUsageResponse } from '../models/backend-response.model';
 import { ChartModel } from '../models/statistic.model';
 
@@ -10,7 +9,7 @@ import { ChartModel } from '../models/statistic.model';
 export class MachineUsagePipe implements PipeTransform {
 	transform(machineUsages: MachineUsageResponse[]): ChartModel {
 		const chart: ChartModel = {
-			labels: machineUsages.map((machineUsage) => dayjs(machineUsage.date).format('DD/MM/YYYY')),
+			labels: [],
 			datasets: [
 				{ data: [], label: 'Horas trabajando', fill: false },
 				{ data: [], label: 'Horas encendida', fill: false },
@@ -52,10 +51,16 @@ export class MachineUsagePipe implements PipeTransform {
 		const onPoints: ChartPoint[] = [];
 		machineUsages.forEach((machineUsage) => {
 			if (machineUsage.workingHours > 0) {
-				workingPoints.push({ t: dayjs(machineUsage.date).toDate(), y: machineUsage.workingHours });
+				workingPoints.push({
+					t: machineUsage.timestamp,
+					y: machineUsage.workingHours,
+				});
 			}
 			if (machineUsage.onHours > 0) {
-				onPoints.push({ t: dayjs(machineUsage.date).toDate(), y: machineUsage.onHours });
+				onPoints.push({
+					t: machineUsage.timestamp,
+					y: machineUsage.onHours,
+				});
 			}
 		});
 		chart.datasets[0].data = workingPoints;

@@ -44,6 +44,7 @@ export class StatisticsService {
 		private errorsPipe: ErrorsPipe
 	) {
 		this.statisticsBaseURL = environment.statisticsBaseURL;
+
 		this.statisticModels = new Map();
 		this.statisticModels.set(StatisticId.MATERIALS_USED, this.getMaterialsUsed);
 		this.statisticModels.set(StatisticId.MACHINE_USAGE, this.getMachineUsage);
@@ -53,9 +54,20 @@ export class StatisticsService {
 		this.statisticModels.set(StatisticId.ERRORS_PRODUCED, this.getErrorsProduced);
 	}
 
+	private static getHttpParams(periodId: PeriodId): HttpParams | undefined {
+		const dateRange = DATE_RANGES.get(periodId);
+
+		if (dateRange) {
+			return new HttpParams()
+				.set('startDate', dateRange.startDate.format(API_DATE_FORMAT))
+				.set('endDate', dateRange.endDate.format(API_DATE_FORMAT));
+		}
+		return undefined;
+	}
+
 	private getMaterialsUsed(twinName: string, periodId: PeriodId): Observable<ChartModel> {
-		const url = `${this.statisticsBaseURL}/${twinName}/materials`;
-		const params = new HttpParams().set('period', periodId);
+		const url = `${this.statisticsBaseURL}/${twinName}/materials-used`;
+		const params = StatisticsService.getHttpParams(periodId);
 
 		return this.http
 			.get<MaterialResponse[]>(url, { params })
@@ -88,8 +100,8 @@ export class StatisticsService {
 	}
 
 	private getOptimizationsProcessed(twinName: string, periodId: PeriodId): Observable<TableModel> {
-		const url = `${this.statisticsBaseURL}/${twinName}/optimizations`;
-		const params = new HttpParams().set('period', periodId);
+		const url = `${this.statisticsBaseURL}/${twinName}/optimizations-processed`;
+		const params = StatisticsService.getHttpParams(periodId);
 
 		return this.http
 			.get<OptimizationResponse[]>(url, { params })
@@ -99,8 +111,8 @@ export class StatisticsService {
 	}
 
 	private getToolsInfo(twinName: string, periodId: PeriodId): Observable<ImageModel> {
-		const url = `${this.statisticsBaseURL}/${twinName}/tools`;
-		const params = new HttpParams().set('twinName', twinName).set('period', periodId);
+		const url = `${this.statisticsBaseURL}/${twinName}/tools-info`;
+		const params = StatisticsService.getHttpParams(periodId);
 
 		return this.http
 			.get<ToolsResponse>(url, { params })
@@ -111,7 +123,7 @@ export class StatisticsService {
 
 	private getTimeDistribution(twinName: string, periodId: PeriodId): Observable<ChartModel> {
 		const url = `${this.statisticsBaseURL}/${twinName}/time-distribution`;
-		const params = new HttpParams().set('period', periodId);
+		const params = StatisticsService.getHttpParams(periodId);
 
 		return this.http
 			.get<TimeDistributionResponse>(url, { params })
@@ -121,8 +133,8 @@ export class StatisticsService {
 	}
 
 	private getErrorsProduced(twinName: string, periodId: PeriodId): Observable<TableModel> {
-		const url = `${this.statisticsBaseURL}/${twinName}/errors`;
-		const params = new HttpParams().set('period', periodId);
+		const url = `${this.statisticsBaseURL}/${twinName}/errors-produced`;
+		const params = StatisticsService.getHttpParams(periodId);
 
 		return this.http
 			.get<ErrorResponse[]>(url, { params })
@@ -133,7 +145,7 @@ export class StatisticsService {
 
 	getRatios(twinName: string): Observable<Ratio[]> {
 		const url = `${this.statisticsBaseURL}/${twinName}/ratios`;
-		const params = new HttpParams().set('period', PeriodId.THIS_YEAR);
+		const params = StatisticsService.getHttpParams(PeriodId.THIS_YEAR);
 
 		return this.http
 			.get<RatioResponse[]>(url, { params })
