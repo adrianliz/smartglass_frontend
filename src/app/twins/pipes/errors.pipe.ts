@@ -4,16 +4,16 @@ import { ErrorResponse } from '../models/backend-response.model';
 import { TableModel } from '../models/statistic.model';
 
 @Pipe({
-	name: 'breakdowns',
+	name: 'errors',
 })
-export class BreakdownsPipe implements PipeTransform {
-	transform(value: ErrorResponse[]): TableModel {
+export class ErrorsPipe implements PipeTransform {
+	transform(errors: ErrorResponse[]): TableModel {
 		return {
 			columns: [
 				{ id: 'cause', header: 'Causa' },
 				{ id: 'timesOccurred', header: 'Veces que ha ocurrido' },
 			],
-			dataSource: new MatTableDataSource(value),
+			dataSource: new MatTableDataSource(errors),
 		} as TableModel;
 	}
 }

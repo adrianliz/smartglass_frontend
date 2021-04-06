@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ErrorMessage } from '../../models/backend-response.model';
+import { ErrorMessage } from '../../models/consts';
 import { TwinModel } from '../../models/twin.model';
 import { TwinsService } from '../../services/twins.service';
 
@@ -22,7 +22,7 @@ export class TwinsComponent implements OnInit {
 		this.error = undefined;
 		this.loading = true;
 		this.twinsModels = [];
-		this.twinsService.getTwinsModels().subscribe(
+		this.twinsService.getTwinModels().subscribe(
 			(res) => {
 				this.twinsModels = res;
 				this.loading = false;

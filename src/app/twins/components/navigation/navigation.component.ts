@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
 	constructor(private twinsService: TwinsService, private authService: AuthService) {}
 
 	ngOnInit(): void {
-		this.twinsService.getTwinsModels().subscribe((res) => (this.twins = res));
+		this.twinsService.getTwinModels().subscribe((res) => (this.twins = res));
 	}
 
 	logout() {

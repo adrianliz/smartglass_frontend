@@ -7,14 +7,14 @@ import { TableModel } from '../models/statistic.model';
 	name: 'optimizations',
 })
 export class OptimizationsPipe implements PipeTransform {
-	transform(value: OptimizationResponse[]): TableModel {
+	transform(optimizations: OptimizationResponse[]): TableModel {
 		return {
 			columns: [
 				{ id: 'name', header: 'Nombre' },
 				{ id: 'material', header: 'Material' },
 				{ id: 'piecesProcessed', header: 'Piezas procesadas' },
 			],
-			dataSource: new MatTableDataSource(value),
+			dataSource: new MatTableDataSource(optimizations),
 		} as TableModel;
 	}
 }

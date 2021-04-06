@@ -2,8 +2,7 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { StatisticCardComponent } from '../../components/statistic-card/statistic-card.component';
-import { ErrorMessage } from '../../models/backend-response.model';
-import { periods, statistics } from '../../models/consts';
+import { ALLOWED_PERIODS, ALLOWED_STATISTICS, ErrorMessage } from '../../models/consts';
 import { Statistic } from '../../models/statistic.model';
 import { TwinsService } from '../../services/twins.service';
 
@@ -28,7 +27,7 @@ export class TwinComponent implements OnInit {
 		this.activatedRoute.params.pipe(switchMap(({ twinName }) => this.twinsService.getTwinModel(twinName))).subscribe(
 			(res) => {
 				this.twinName = res.name;
-				this.statistics = statistics;
+				this.statistics = ALLOWED_STATISTICS;
 				this.loading = false;
 				this.showRefresh = true;
 			},
@@ -45,7 +44,7 @@ export class TwinComponent implements OnInit {
 
 	refreshStatistics(): void {
 		if (this.statisticCards) {
-			this.statisticCards.forEach((statisticCard) => statisticCard.loadStatistic(periods[0].id));
+			this.statisticCards.forEach((statisticCard) => statisticCard.loadStatistic(ALLOWED_PERIODS[0].id));
 		}
 	}
 }

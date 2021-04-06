@@ -1,4 +1,11 @@
 <div class="d-block">
-	<canvas *ngIf="model" baseChart [data]="model.data" [labels]="model | displayedLabels" [chartType]="model.type">
+	<canvas
+		*ngIf="model"
+		baseChart
+		[datasets]="model.datasets"
+		[labels]="model.labels"
+		[chartType]="model.type"
+		[options]="model.options"
+	>
 	</canvas>
 </div>

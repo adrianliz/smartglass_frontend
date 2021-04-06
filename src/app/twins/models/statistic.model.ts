@@ -1,12 +1,11 @@
 import { Type } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Label } from 'ng2-charts';
+import { StatisticId } from './consts';
 
-export enum StatisticId {
-	MATERIALS_USED = 'MATERIALS_USED',
-	OPTIMIZATIONS_PROCESSED = 'OPTIMIZATIONS_PROCESSED',
-	TOOLS_INFO = 'TOOLS_INFO',
-	TIME_DISTRIBUTION = 'TIME_DISTRIBUTION',
-	ERRORS_PRODUCED = 'ERRORS_PRODUCED',
+export interface StatisticComponent {
+	model: ChartModel | TableModel | ImageModel;
 }
 
 export interface Statistic {
@@ -15,21 +14,11 @@ export interface Statistic {
 	component: Type<any>;
 }
 
-export interface StatisticComponent {
-	model: ChartModel | TableModel | ImageModel;
-}
-
-export enum ChartType {
-	DOUGHNUT = 'doughnut',
-}
-
 export interface ChartModel {
-	labels: {
-		id: string;
-		name: string;
-	}[];
-	data: number[];
+	labels: Label[];
+	datasets: ChartDataSets[];
 	type: ChartType;
+	options: ChartOptions;
 }
 
 export interface TableModel {

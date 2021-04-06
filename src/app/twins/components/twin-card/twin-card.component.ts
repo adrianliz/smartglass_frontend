@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ErrorMessage } from '../../models/backend-response.model';
+import { ErrorMessage, TwinStateId } from '../../models/consts';
 import { Ratio } from '../../models/ratio.model';
-import { TwinModel, TwinStateId } from '../../models/twin.model';
+import { TwinModel } from '../../models/twin.model';
 import { StatisticsService } from '../../services/statistics.service';
 
 @Component({

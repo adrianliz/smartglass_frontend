@@ -5,17 +5,17 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { TwinModelResponse } from '../models/backend-response.model';
 import { TwinModel } from '../models/twin.model';
-import { TwinPipe } from '../pipes/twin.pipe';
+import { TwinModelPipe } from '../pipes/twinModel.pipe';
 
 @Injectable()
 export class TwinsService {
 	private readonly twinsBaseURL: string;
 
-	constructor(private http: HttpClient, private twinPipe: TwinPipe) {
+	constructor(private http: HttpClient, private twinPipe: TwinModelPipe) {
 		this.twinsBaseURL = environment.twinsBaseURL;
 	}
 
-	getTwinsModels(): Observable<TwinModel[]> {
+	getTwinModels(): Observable<TwinModel[]> {
 		const url = `${this.twinsBaseURL}/models`;
 
 		return this.http.get<TwinModelResponse[]>(url).pipe(

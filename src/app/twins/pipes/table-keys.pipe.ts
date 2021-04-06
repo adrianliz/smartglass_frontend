@@ -5,7 +5,7 @@ import { TableModel } from '../models/statistic.model';
 	name: 'tableKeys',
 })
 export class TableKeysPipe implements PipeTransform {
-	transform(value: TableModel): string[] {
-		return value.columns.map((column) => column.id);
+	transform(table: TableModel): string[] {
+		return table.columns.map((column) => column.id);
 	}
 }

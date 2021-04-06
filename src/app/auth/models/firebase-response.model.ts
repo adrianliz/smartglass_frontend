@@ -21,7 +21,7 @@ export interface ErrorResponse {
 	};
 }
 
-export enum ErrorCause {
+export const enum ErrorCause {
 	UNDEFINED = 'UNDEFINED',
 	EMAIL_EXISTS = 'EMAIL_EXISTS',
 	OPERATION_NOT_ALLOWED = 'OPERATION_NOT_ALLOWED',

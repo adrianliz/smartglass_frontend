@@ -16,8 +16,9 @@ import { StatisticItemDirective } from './directives/statistic-item.directive';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TwinComponent } from './pages/twin/twin.component';
 import { TwinsComponent } from './pages/twins/twins.component';
-import { BreakdownsPipe } from './pipes/breakdowns.pipe';
-import { DisplayedLabelsPipe } from './pipes/displayed-labels.pipe';
+import { DaysSplitterPipe } from './pipes/days-splitter.pipe';
+import { ErrorsPipe } from './pipes/errors.pipe';
+import { MachineUsagePipe } from './pipes/machine-usage.pipe';
 import { MaterialsPipe } from './pipes/materials.pipe';
 import { OptimizationsPipe } from './pipes/optimizations.pipe';
 import { PercentagePipe } from './pipes/percentage.pipe';
@@ -25,7 +26,7 @@ import { RatioPipe } from './pipes/ratio.pipe';
 import { TableKeysPipe } from './pipes/table-keys.pipe';
 import { TimeDistributionPipe } from './pipes/time-distribution.pipe';
 import { ToolsPipe } from './pipes/tools.pipe';
-import { TwinPipe } from './pipes/twin.pipe';
+import { TwinModelPipe } from './pipes/twinModel.pipe';
 import { StatisticsService } from './services/statistics.service';
 import { TwinsService } from './services/twins.service';
 import { TwinsRoutingModule } from './twins-routing.module';
@@ -42,28 +43,31 @@ import { TwinsRoutingModule } from './twins-routing.module';
 		StatisticTableComponent,
 		StatisticImageComponent,
 		PercentagePipe,
-		TwinPipe,
+		TwinModelPipe,
 		RatioPipe,
 		MaterialsPipe,
 		TimeDistributionPipe,
-		BreakdownsPipe,
+		ErrorsPipe,
 		TableKeysPipe,
-		DisplayedLabelsPipe,
 		OptimizationsPipe,
 		ToolsPipe,
+		DaysSplitterPipe,
+		MachineUsagePipe,
 		StatisticItemDirective,
 	],
 	imports: [CommonModule, TwinsRoutingModule, SharedModule, MaterialModule, NgxGaugeModule, ChartsModule],
 	providers: [
 		TwinsService,
 		StatisticsService,
-		TwinPipe,
+		TwinModelPipe,
 		RatioPipe,
 		MaterialsPipe,
 		TimeDistributionPipe,
 		OptimizationsPipe,
 		ToolsPipe,
-		BreakdownsPipe,
+		ErrorsPipe,
+		DaysSplitterPipe,
+		MachineUsagePipe,
 	],
 })
 export class TwinsModule {}
