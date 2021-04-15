@@ -1,13 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ChartPoint } from 'chart.js';
 import { MachineUsageResponse } from '../models/backend-response.model';
+import { DateRange } from '../models/date-range.model';
 import { ChartModel } from '../models/statistic.model';
 
 @Pipe({
 	name: 'machineUsage',
 })
 export class MachineUsagePipe implements PipeTransform {
-	transform(machineUsages: MachineUsageResponse[]): ChartModel {
+	transform(machineUsages: [DateRange, MachineUsageResponse][]): ChartModel {
 		const chart: ChartModel = {
 			labels: [],
 			datasets: [
@@ -50,16 +51,16 @@ export class MachineUsagePipe implements PipeTransform {
 		const workingPoints: ChartPoint[] = [];
 		const onPoints: ChartPoint[] = [];
 		machineUsages.forEach((machineUsage) => {
-			if (machineUsage.workingHours > 0) {
+			if (machineUsage[1].workingHours > 0) {
 				workingPoints.push({
-					t: machineUsage.timestamp,
-					y: machineUsage.workingHours,
+					t: machineUsage[0].endDate.valueOf(),
+					y: machineUsage[1].workingHours,
 				});
 			}
-			if (machineUsage.onHours > 0) {
+			if (machineUsage[1].onHours > 0) {
 				onPoints.push({
-					t: machineUsage.timestamp,
-					y: machineUsage.onHours,
+					t: machineUsage[0].endDate.valueOf(),
+					y: machineUsage[1].onHours,
 				});
 			}
 		});

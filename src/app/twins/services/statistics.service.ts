@@ -13,6 +13,7 @@ import {
 	ToolsResponse,
 } from '../models/backend-response.model';
 import { API_DATE_FORMAT, DATE_RANGES, PeriodId, StatisticId } from '../models/consts';
+import { DateRange } from '../models/date-range.model';
 import { Ratio } from '../models/ratio.model';
 import { ChartModel, ImageModel, TableModel } from '../models/statistic.model';
 import { DaysSplitterPipe } from '../pipes/days-splitter.pipe';
@@ -78,7 +79,7 @@ export class StatisticsService {
 
 	private getMachineUsage(twinName: string, periodId: PeriodId): Observable<ChartModel> {
 		const dateRange = DATE_RANGES.get(periodId);
-		const machineUsages: Observable<MachineUsageResponse>[] = [];
+		const machineUsages: Observable<[DateRange, MachineUsageResponse]>[] = [];
 
 		if (dateRange) {
 			const url = `${this.statisticsBaseURL}/${twinName}/machine-usage`;
@@ -89,13 +90,15 @@ export class StatisticsService {
 					.set('endDate', day.endDate.format(API_DATE_FORMAT));
 
 				machineUsages.push(
-					this.http.get<MachineUsageResponse>(url, { params })
+					this.http
+						.get<MachineUsageResponse>(url, { params })
+						.pipe(map((res) => [day, res]))
 				);
 			});
 		}
 
 		return forkJoin(machineUsages).pipe(
-			map<MachineUsageResponse[], ChartModel>((res) => this.machineUsagePipe.transform(res))
+			map<[DateRange, MachineUsageResponse][], ChartModel>((res) => this.machineUsagePipe.transform(res))
 		);
 	}
 
