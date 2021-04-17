@@ -26,10 +26,11 @@ import { RatioPipe } from './pipes/ratio.pipe';
 import { TableKeysPipe } from './pipes/table-keys.pipe';
 import { TimeDistributionPipe } from './pipes/time-distribution.pipe';
 import { ToolsPipe } from './pipes/tools.pipe';
-import { TwinModelPipe } from './pipes/twinModel.pipe';
+import { TwinModelPipe } from './pipes/twin-model.pipe';
 import { StatisticsService } from './services/statistics.service';
 import { TwinsService } from './services/twins.service';
 import { TwinsRoutingModule } from './twins-routing.module';
+import { SecondsToHoursPipe } from './pipes/seconds-to-hours.pipe';
 
 @NgModule({
 	declarations: [
@@ -54,6 +55,7 @@ import { TwinsRoutingModule } from './twins-routing.module';
 		DaysSplitterPipe,
 		MachineUsagePipe,
 		StatisticItemDirective,
+		SecondsToHoursPipe,
 	],
 	imports: [CommonModule, TwinsRoutingModule, SharedModule, MaterialModule, NgxGaugeModule, ChartsModule],
 	providers: [
@@ -68,6 +70,7 @@ import { TwinsRoutingModule } from './twins-routing.module';
 		ErrorsPipe,
 		DaysSplitterPipe,
 		MachineUsagePipe,
+		SecondsToHoursPipe,
 	],
 })
 export class TwinsModule {}
