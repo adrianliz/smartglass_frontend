@@ -1,9 +1,10 @@
 <div class="text-center">
 	<img [src]="model.imageSrc" class="img-thumbnail rounded" [alt]="model.imageAlt" />
 </div>
+
 <ul class="list-group list-group-flush">
 	<li *ngFor="let description of model.description | keyvalue" class="list-group-item">
-		<b>{{ description.value | number }}</b>
-		{{ description.key }}
+		<b>{{ description.value | number }} </b>
+		<p class="d-inline-block" *transloco="let t">{{ t('twins.' + description.key) }}</p>
 	</li>
 </ul>

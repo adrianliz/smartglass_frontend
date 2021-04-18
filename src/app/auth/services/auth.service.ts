@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -13,6 +14,7 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
 	static readonly ID_TOKEN = 'idToken';
+	private static readonly ERROR_CLEANER_REGEXP = /\s:\s.*/;
 
 	private readonly firebaseBaseURL: string;
 	private readonly firebaseKey: string;
@@ -20,10 +22,20 @@ export class AuthService {
 
 	private _user!: User;
 
-	constructor(private http: HttpClient, private router: Router) {
+	constructor(private http: HttpClient, private router: Router, private translocoService: TranslocoService) {
 		this.firebaseBaseURL = environment.firebaseBaseURL;
 		this.firebaseKey = environment.firebaseKey;
 		this.firebaseParams = new HttpParams().set('key', this.firebaseKey);
+	}
+
+	private translateError(error: string): Observable<AuthResponse> {
+		const cleanError = error.replace(AuthService.ERROR_CLEANER_REGEXP, '');
+
+		return this.translocoService.selectTranslate(cleanError).pipe(
+			map<string, AuthResponse>((res) => {
+				return { ok: false, errorMessage: res };
+			})
+		);
 	}
 
 	private doAuth(url: string, email: string, password: string): Observable<AuthResponse> {
@@ -36,7 +48,7 @@ export class AuthService {
 					localStorage.setItem(AuthService.ID_TOKEN, res.idToken);
 					return { ok: true };
 				}),
-				catchError((err: ErrorResponse) => of({ ok: false, error: err.error.error.message }))
+				catchError((err: ErrorResponse) => this.translateError(err.error.error.message))
 			);
 	}
 

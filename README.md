@@ -46,3 +46,5 @@ También, se podrán generar distintas estadísticas derivadas de los resultados
 
 ![v0.8.0](screenshots/v0.8.0.png)
 
+- :white_check_mark: v0.9.0 -> Interfaz internacionalizada y localizada al inglés y al español
+

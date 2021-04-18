@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { errorMessages } from '../../models/auth-response.model';
-import { ErrorCause } from '../../models/firebase-response.model';
 import { AuthService } from '../../services/auth.service';
 import { matcher } from './matcher.validator';
 
@@ -42,11 +40,12 @@ export class SignUpComponent {
 			if (res.ok) {
 				this.router.navigateByUrl('/dashboard').then(() => (this.loadingDashboard = false));
 			} else {
+				this.loadingDashboard = false;
 				Swal.fire({
 					icon: 'error',
 					title: 'Oops...',
-					text: errorMessages.get(res.error || ErrorCause.UNDEFINED),
-				}).then(() => (this.loadingDashboard = false));
+					text: res.errorMessage,
+				});
 			}
 		});
 	}

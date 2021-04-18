@@ -1,0 +1,17 @@
+{
+	"REFRESH": "Refrescar",
+	"EMAIL_NOT_FOUND": "Email o contraseña incorrecta",
+	"INVALID_PASSWORD": "Email o contraseña incorrecta",
+	"EMAIL_EXISTS": "El email ya existe",
+	"OPERATION_NOT_ALLOWED": "El servidor no ha permitido la operación",
+	"TOO_MANY_ATTEMPTS_TRY_LATER": "Demasiados intentos, pruebe más tarde",
+	"USER_DISABLED": "El usuario está deshabilitado",
+	"USER_NOT_FOUND": "No se ha encontrado el usuario",
+	"TOKEN_EXPIRED": "El token ha expirado",
+	"INVALID_ID_TOKEN": "El token es inválido",
+	"TWIN_NOT_FOUND": "No existe el gemelo",
+	"TWIN_ERROR": "No se ha podido recuperar el gemelo",
+	"TWINS_ERROR": "No se han podido recuperar los gemelos",
+	"RATIOS_ERROR": "No se han podido recuperar los ratios",
+	"STATISTIC_ERROR": "No se han podido recuperar las estadísticas"
+}

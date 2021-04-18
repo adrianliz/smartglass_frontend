@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { TwinModelResponse } from '../models/backend-response.model';
 import { TwinModel } from '../models/twin.model';
-import { TwinModelPipe } from '../pipes/twinModel.pipe';
+import { TwinModelPipe } from '../pipes/twin-model.pipe';
 
 @Injectable()
 export class TwinsService {

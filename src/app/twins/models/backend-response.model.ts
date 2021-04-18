@@ -1,4 +1,4 @@
-import { RatioId, TwinStateId } from './consts';
+import { TwinStateId } from './twin.model';
 
 export interface TwinModelResponse {
 	twinName: string;
@@ -8,7 +8,7 @@ export interface TwinModelResponse {
 }
 
 export interface RatioResponse {
-	ratio: RatioId;
+	ratio: string;
 	value: number;
 }
 
@@ -18,8 +18,8 @@ export interface MaterialResponse {
 }
 
 export interface MachineUsageResponse {
-	workingHours: number;
-	onHours: number;
+	workingSeconds: number;
+	onSeconds: number;
 }
 
 export interface OptimizationResponse {
@@ -35,9 +35,9 @@ export interface ToolsResponse {
 }
 
 export interface TimeDistributionResponse {
-	processingGlassHours: number;
-	loadingGlassHours: number;
-	standbyHours: number;
+	processingGlassSeconds: number;
+	loadingGlassSeconds: number;
+	standbySeconds: number;
 }
 
 export interface ErrorResponse {

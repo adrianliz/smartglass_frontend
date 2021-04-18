@@ -1,8 +1,8 @@
 <div class="row mb-3">
 	<div class="col text-left">
-		<button mat-raised-button routerLink="/twins" color="primary" class="mat-elevation-z8">
+		<button mat-raised-button routerLink="/twins" color="primary" class="mat-elevation-z8" *transloco="let t">
 			<mat-icon>arrow_back_ios</mat-icon>
-			Volver
+			{{ t('twins.GO_BACK') }}
 		</button>
 	</div>
 	<div class="col text-right">

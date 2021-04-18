@@ -10,7 +10,6 @@ export interface StatisticComponent {
 
 export interface Statistic {
 	id: StatisticId;
-	name: string;
 	component: Type<any>;
 }
 
@@ -19,13 +18,17 @@ export interface ChartModel {
 	datasets: ChartDataSets[];
 	type: ChartType;
 	options: ChartOptions;
+	labelsToTranslate?: Label[];
+	translateDatasets?: boolean;
+}
+
+export interface TableColumn {
+	id: string;
+	header: string;
 }
 
 export interface TableModel {
-	columns: {
-		id: string;
-		header: string;
-	}[];
+	columns: TableColumn[];
 	dataSource: MatTableDataSource<any>;
 }
 
