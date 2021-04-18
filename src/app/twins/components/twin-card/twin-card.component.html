@@ -1,14 +1,20 @@
 <mat-card class="mat-elevation-z8 rounded-lg">
 	<mat-card-header>
-		<div mat-card-avatar [ngClass]="getStateStyle(twin.currentState.id)"></div>
+		<div mat-card-avatar [ngClass]="getStateStyle(twin.currentState)"></div>
 		<mat-card-title>{{ twin.name }}</mat-card-title>
-		<mat-card-subtitle>{{ twin.currentState.name }}</mat-card-subtitle>
+		<mat-card-subtitle *transloco="let t">{{ t('twins.' + twin.currentState) }}</mat-card-subtitle>
 	</mat-card-header>
+
 	<img mat-card-image [src]="twin.img" [alt]="twin.name" class="m-2 img-fluid" />
+
 	<mat-card-content>
 		<div class="text-secondary mb-4">
-			<p><b>Nº SERIE:</b> {{ twin.machineSeries }}</p>
-			<p><b>MODELO:</b> {{ twin.machineModel }}</p>
+			<p>
+				<b *transloco="let t">{{ t('twins.BRAND') }}</b> {{ twin.machineSeries }}
+			</p>
+			<p>
+				<b *transloco="let t">{{ t('twins.MODEL') }}</b> {{ twin.machineModel }}
+			</p>
 		</div>
 
 		<p>Ratios</p>
@@ -21,7 +27,7 @@
 				<ngx-gauge
 					*ngFor="let ratio of ratios"
 					[value]="ratio.value | percentage"
-					[label]="ratio.definition.name"
+					[label]="'twins.' + ratio.id | transloco"
 					[size]="120"
 					append="%"
 					class="ml-3"
@@ -29,11 +35,18 @@
 			</ng-container>
 		</div>
 	</mat-card-content>
+
 	<mat-card-actions>
 		<div class="text-right m-3">
-			<button mat-raised-button [routerLink]="['/dashboard', twin.name]" color="primary" class="mat-elevation-z8">
+			<button
+				mat-raised-button
+				[routerLink]="['/dashboard', twin.name]"
+				color="primary"
+				class="mat-elevation-z8"
+				*transloco="let t"
+			>
 				<mat-icon>read_more</mat-icon>
-				Ver más
+				{{ t('twins.SHOW_MORE') }}
 			</button>
 		</div>
 	</mat-card-actions>

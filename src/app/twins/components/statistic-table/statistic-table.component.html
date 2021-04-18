@@ -1,11 +1,11 @@
 <table mat-table [dataSource]="model.dataSource" class="w-100">
 	<ng-container *ngFor="let column of model.columns" matColumnDef="{{ column.id }}">
-		<mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
+		<mat-header-cell *matHeaderCellDef>{{ 'twins.' + column.header | transloco }}</mat-header-cell>
 		<mat-cell *matCellDef="let element">{{ element[column.id] }}</mat-cell>
 	</ng-container>
 
-	<mat-header-row *matHeaderRowDef="model | tableKeys"></mat-header-row>
-	<mat-row *matRowDef="let row; columns: model | tableKeys"></mat-row>
+	<mat-header-row *matHeaderRowDef="model | tableIds"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: model | tableIds"></mat-row>
 </table>
 
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

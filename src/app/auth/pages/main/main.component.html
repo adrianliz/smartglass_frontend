@@ -2,9 +2,9 @@
 	<div class="row">
 		<div class="col-lg-6 gradient-bg">
 			<div class="row align-items-center text-white text-break vh-100">
-				<h1 class="mat-display-3 ml-5">
-					Bienvenido a SmartGlass
-					<div class="mat-title">Inicia sesión para acceder a tu cuenta</div>
+				<h1 class="mat-display-3 ml-5" *transloco="let t">
+					{{ t('auth.WELCOME') }}
+					<div class="mat-title" *transloco="let t">{{ t('auth.WELCOME_HELP') }}</div>
 				</h1>
 			</div>
 		</div>

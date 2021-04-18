@@ -1,0 +1,16 @@
+{
+	"WELCOME": "Bienvenido a Smartglass",
+	"WELCOME_HELP": "Inicia sesión para ver sus gemelos disponibles",
+	"INVALID_EMAIL": "Email inválido",
+	"EMAIL_REQUIRED": "Email requerido",
+	"INVALID_PWD": "La contraseña debe tener al menos 6 carácteres",
+	"PWD_DONT_MATCH": "Las contraseñas no coinciden",
+	"PWD_REQUIRED": "Contraseña requerida",
+	"PWD_CONFIRM_REQUIRED": "Confirmación de contraseña requerida",
+	"PWD": "Contraseña",
+	"PWD_CONFIRM": "Confirmar contraseña",
+	"LOGIN_HELP": "¿No tienes una cuenta?",
+	"SIGNUP_HELP": "¿Ya tienes una cuenta?",
+	"SIGNUP": "Regístrate",
+	"LOGIN": "Inicia sesión"
+}

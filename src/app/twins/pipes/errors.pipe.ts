@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ErrorResponse } from '../models/backend-response.model';
+import { ERRORS_PRODUCED_COLUMNS } from '../models/consts';
 import { TableModel } from '../models/statistic.model';
 
 @Pipe({
@@ -9,10 +10,7 @@ import { TableModel } from '../models/statistic.model';
 export class ErrorsPipe implements PipeTransform {
 	transform(errors: ErrorResponse[]): TableModel {
 		return {
-			columns: [
-				{ id: 'cause', header: 'Causa' },
-				{ id: 'timesOccurred', header: 'Veces que ha ocurrido' },
-			],
+			columns: ERRORS_PRODUCED_COLUMNS,
 			dataSource: new MatTableDataSource(errors),
 		} as TableModel;
 	}

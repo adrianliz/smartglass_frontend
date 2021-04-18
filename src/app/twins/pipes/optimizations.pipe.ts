@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { OptimizationResponse } from '../models/backend-response.model';
+import { OPTIMIZATIONS_PROCESSED_COLUMNS } from '../models/consts';
 import { TableModel } from '../models/statistic.model';
 
 @Pipe({
@@ -9,11 +10,7 @@ import { TableModel } from '../models/statistic.model';
 export class OptimizationsPipe implements PipeTransform {
 	transform(optimizations: OptimizationResponse[]): TableModel {
 		return {
-			columns: [
-				{ id: 'name', header: 'Nombre' },
-				{ id: 'material', header: 'Material' },
-				{ id: 'piecesProcessed', header: 'Piezas procesadas' },
-			],
+			columns: OPTIMIZATIONS_PROCESSED_COLUMNS,
 			dataSource: new MatTableDataSource(optimizations),
 		} as TableModel;
 	}

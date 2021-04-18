@@ -44,7 +44,7 @@ export class TwinComponent implements OnInit {
 
 	refreshStatistics(): void {
 		if (this.statisticCards) {
-			this.statisticCards.forEach((statisticCard) => statisticCard.loadStatistic(ALLOWED_PERIODS[0].id));
+			this.statisticCards.forEach((statisticCard) => statisticCard.loadStatistic(ALLOWED_PERIODS[0]));
 		}
 	}
 }

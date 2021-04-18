@@ -8,30 +8,32 @@
 				<input matInput formControlName="email" type="email" />
 			</label>
 			<mat-error *ngIf="controls.email.errors">
-				<span *ngIf="controls.email.errors.required">Email requerido</span>
-				<span *ngIf="controls.email.errors.email">Email inválido</span>
+				<span *ngIf="controls.email.errors.required">{{ 'auth.EMAIL_REQUIRED' | transloco }}</span>
+				<span *ngIf="controls.email.errors.email">{{ 'auth.INVALID_EMAIL' | transloco }}</span>
 			</mat-error>
 		</mat-form-field>
 	</div>
 
 	<div class="form-group">
 		<mat-form-field class="form-field" appearance="standard">
-			<mat-label>Contraseña</mat-label>
+			<mat-label>{{ 'auth.PWD' | transloco }}</mat-label>
 			<label>
 				<input matInput formControlName="password" type="password" />
 			</label>
-			<mat-error *ngIf="controls.password.invalid">Contraseña requerida</mat-error>
+			<mat-error *ngIf="controls.password.invalid">{{ 'auth.PWD_REQUIRED' | transloco }}</mat-error>
 		</mat-form-field>
 	</div>
 
-	<p>
-		¿No tienes una cuenta?
-		<a class="d-inline" routerLink="../signup">Regístrate</a>
+	<p *transloco="let t">
+		{{ t('auth.LOGIN_HELP') }}
+		<a class="d-inline" routerLink="../signup" *transloco="let t">{{ t('auth.SIGNUP') }}</a>
 	</p>
 
 	<app-loading *ngIf="loadingDashboard"></app-loading>
 
 	<div *ngIf="!loadingDashboard" class="text-right m-3">
-		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit">Entrar</button>
+		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit" *transloco="let t">
+			{{ t('auth.LOGIN') }}
+		</button>
 	</div>
 </form>

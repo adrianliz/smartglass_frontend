@@ -1,4 +1,4 @@
-import { RatioId, TwinStateId } from './consts';
+import { TwinStateId } from './twin.model';
 
 export interface TwinModelResponse {
 	twinName: string;
@@ -8,7 +8,7 @@ export interface TwinModelResponse {
 }
 
 export interface RatioResponse {
-	ratio: RatioId;
+	ratio: string;
 	value: number;
 }
 

@@ -1,9 +1,4 @@
-import { RatioId } from './consts';
-
 export interface Ratio {
-	definition: {
-		id: RatioId;
-		name: string;
-	};
+	id: string;
 	value: number;
 }

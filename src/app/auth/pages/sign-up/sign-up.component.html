@@ -1,4 +1,4 @@
-<h1 class="mat-display-2 mb-0">Regístrate</h1>
+<h1 class="mat-display-2 mb-0" *transloco="let t">{{ t('auth.SIGNUP') }}</h1>
 
 <form [formGroup]="signUpForm" (submit)="signUp()">
 	<div class="form-group">
@@ -8,46 +8,48 @@
 				<input matInput formControlName="email" type="email" />
 			</label>
 			<mat-error *ngIf="controls.email.errors">
-				<span *ngIf="controls.email.errors.required">Email requerido</span>
-				<span *ngIf="controls.email.errors.email">Email inválido</span>
+				<span *ngIf="controls.email.errors.required">{{ 'auth.EMAIL_REQUIRED' | transloco }}</span>
+				<span *ngIf="controls.email.errors.email">{{ 'auth.INVALID_EMAIL' | transloco }}</span>
 			</mat-error>
 		</mat-form-field>
 	</div>
 
 	<div class="form-group">
 		<mat-form-field class="form-field" appearance="standard">
-			<mat-label>Contraseña</mat-label>
+			<mat-label>{{ 'auth.PWD' | transloco }}</mat-label>
 			<label>
 				<input matInput formControlName="password" type="password" />
 			</label>
 			<mat-error *ngIf="controls.password.errors">
-				<span *ngIf="controls.password.errors.required">Contraseña requerida</span>
-				<span *ngIf="controls.password.errors.minlength">La contraseña debe tener al menos 6 carácteres</span>
+				<span *ngIf="controls.password.errors.required">{{ 'auth.PWD_REQUIRED' | transloco }}</span>
+				<span *ngIf="controls.password.errors.minlength">{{ 'auth.INVALID_PWD' | transloco }}</span>
 			</mat-error>
 		</mat-form-field>
 	</div>
 
 	<div class="form-group">
 		<mat-form-field class="form-field" appearance="standard">
-			<mat-label>Confirmar contraseña</mat-label>
+			<mat-label>{{ 'auth.PWD_CONFIRM' | transloco }}</mat-label>
 			<label>
 				<input matInput formControlName="confirmedPassword" type="password" />
 			</label>
 			<mat-error *ngIf="controls.confirmedPassword.errors">
-				<span *ngIf="controls.confirmedPassword.errors.required">Confirmación de contraseña requerida</span>
-				<span *ngIf="controls.confirmedPassword.errors.mustMatch">Las contraseñas no coinciden</span>
+				<span *ngIf="controls.confirmedPassword.errors.required">{{ 'auth.PWD_CONFIRM_REQUIRED' | transloco }}</span>
+				<span *ngIf="controls.confirmedPassword.errors.mustMatch">{{ 'auth.PWD_DONT_MATCH' | transloco }}</span>
 			</mat-error>
 		</mat-form-field>
 	</div>
 
-	<p>
-		¿Ya tienes una cuenta?
-		<a class="d-inline" routerLink="../login">Inicia sesión</a>
+	<p *transloco="let t">
+		{{ t('auth.SIGNUP_HELP') }}
+		<a class="d-inline" routerLink="../login" *transloco="let t">{{ t('auth.LOGIN') }}</a>
 	</p>
 
 	<app-loading *ngIf="loadingDashboard"></app-loading>
 
 	<div *ngIf="!loadingDashboard" class="text-right m-3">
-		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit">Registrarse</button>
+		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit" *transloco="let t">
+			{{ t('auth.SIGNUP') }}
+		</button>
 	</div>
 </form>

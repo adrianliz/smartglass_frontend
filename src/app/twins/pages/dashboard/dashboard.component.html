@@ -4,9 +4,16 @@
 	</mat-sidenav>
 
 	<mat-toolbar color="primary">
-		<button mat-icon-button (click)="sidenav.toggle()">
-			<mat-icon>menu</mat-icon>
-		</button>
+		<mat-toolbar-row>
+			<button mat-icon-button (click)="sidenav.toggle()">
+				<mat-icon>menu</mat-icon>
+			</button>
+
+			<span class="spacer"></span>
+
+			<mat-icon>language</mat-icon>
+			<app-change-lang></app-change-lang>
+		</mat-toolbar-row>
 	</mat-toolbar>
 
 	<div class="mx-5 my-3">

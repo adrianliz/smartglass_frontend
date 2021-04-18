@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TableModel } from '../models/statistic.model';
 
 @Pipe({
-	name: 'tableKeys',
+	name: 'tableIds',
 })
-export class TableKeysPipe implements PipeTransform {
+export class TableIdsPipe implements PipeTransform {
 	transform(table: TableModel): string[] {
 		return table.columns.map((column) => column.id);
 	}

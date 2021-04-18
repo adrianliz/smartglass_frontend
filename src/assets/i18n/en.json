@@ -1,0 +1,17 @@
+{
+	"REFRESH": "Refresh",
+	"EMAIL_NOT_FOUND": "Invalid email or password",
+	"INVALID_PASSWORD": "Invalid email or password",
+	"EMAIL_EXISTS": "Email already exists",
+	"OPERATION_NOT_ALLOWED": "Operation not allowed",
+	"TOO_MANY_ATTEMPTS_TRY_LATER": "Too many attempts, try later",
+	"USER_DISABLED": "User is disabled",
+	"USER_NOT_FOUND": "User not found",
+	"TOKEN_EXPIRED": "Token expired",
+	"INVALID_ID_TOKEN": "Invalid token",
+	"TWIN_NOT_FOUND": "Twin not found",
+	"TWIN_ERROR": "Couldn't retrieve twin",
+	"TWINS_ERROR": "Couldn't retrieve twins",
+	"RATIOS_ERROR": "Couldn't retrieve ratios",
+	"STATISTIC_ERROR": "Couldn't retrieve statistics"
+}

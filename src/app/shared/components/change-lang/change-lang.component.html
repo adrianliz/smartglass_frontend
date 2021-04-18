@@ -1,0 +1,3 @@
+<mat-select (selectionChange)="changeLang($event.value)" [value]="currentLang">
+	<mat-option *ngFor="let lang of availableLangs" [value]="lang">{{ lang }}</mat-option>
+</mat-select>

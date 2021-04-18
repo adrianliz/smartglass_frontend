@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { TRANSLOCO_SCOPE, TranslocoModule } from '@ngneat/transloco';
 import { ChartsModule } from 'ng2-charts';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { MaterialModule } from '../material/material.module';
@@ -23,14 +24,14 @@ import { MaterialsPipe } from './pipes/materials.pipe';
 import { OptimizationsPipe } from './pipes/optimizations.pipe';
 import { PercentagePipe } from './pipes/percentage.pipe';
 import { RatioPipe } from './pipes/ratio.pipe';
-import { TableKeysPipe } from './pipes/table-keys.pipe';
+import { SecondsToHoursPipe } from './pipes/seconds-to-hours.pipe';
+import { TableIdsPipe } from './pipes/table-ids.pipe';
 import { TimeDistributionPipe } from './pipes/time-distribution.pipe';
 import { ToolsPipe } from './pipes/tools.pipe';
 import { TwinModelPipe } from './pipes/twin-model.pipe';
 import { StatisticsService } from './services/statistics.service';
 import { TwinsService } from './services/twins.service';
 import { TwinsRoutingModule } from './twins-routing.module';
-import { SecondsToHoursPipe } from './pipes/seconds-to-hours.pipe';
 
 @NgModule({
 	declarations: [
@@ -48,8 +49,8 @@ import { SecondsToHoursPipe } from './pipes/seconds-to-hours.pipe';
 		RatioPipe,
 		MaterialsPipe,
 		TimeDistributionPipe,
+		TableIdsPipe,
 		ErrorsPipe,
-		TableKeysPipe,
 		OptimizationsPipe,
 		ToolsPipe,
 		DaysSplitterPipe,
@@ -57,7 +58,15 @@ import { SecondsToHoursPipe } from './pipes/seconds-to-hours.pipe';
 		StatisticItemDirective,
 		SecondsToHoursPipe,
 	],
-	imports: [CommonModule, TwinsRoutingModule, SharedModule, MaterialModule, NgxGaugeModule, ChartsModule],
+	imports: [
+		CommonModule,
+		TwinsRoutingModule,
+		SharedModule,
+		MaterialModule,
+		NgxGaugeModule,
+		ChartsModule,
+		TranslocoModule,
+	],
 	providers: [
 		TwinsService,
 		StatisticsService,
@@ -71,6 +80,7 @@ import { SecondsToHoursPipe } from './pipes/seconds-to-hours.pipe';
 		DaysSplitterPipe,
 		MachineUsagePipe,
 		SecondsToHoursPipe,
+		{ provide: TRANSLOCO_SCOPE, useValue: 'twins' },
 	],
 })
 export class TwinsModule {}

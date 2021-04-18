@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ChartPoint } from 'chart.js';
 import { MachineUsageResponse } from '../models/backend-response.model';
+import { MACHINE_USAGE_DATASETS } from '../models/consts';
 import { DateRange } from '../models/date-range.model';
 import { ChartModel } from '../models/statistic.model';
 import { SecondsToHoursPipe } from './seconds-to-hours.pipe';
@@ -15,8 +16,8 @@ export class MachineUsagePipe implements PipeTransform {
 		const chart: ChartModel = {
 			labels: [],
 			datasets: [
-				{ data: [], label: 'Horas trabajando', fill: false },
-				{ data: [], label: 'Horas encendida', fill: false },
+				{ data: [], label: MACHINE_USAGE_DATASETS.WORKING_HOURS, fill: false },
+				{ data: [], label: MACHINE_USAGE_DATASETS.ON_HOURS, fill: false },
 			],
 			type: 'line',
 			options: {
@@ -49,6 +50,7 @@ export class MachineUsagePipe implements PipeTransform {
 					],
 				},
 			},
+			translateDatasets: true,
 		};
 
 		const workingPoints: ChartPoint[] = [];

@@ -1,0 +1,16 @@
+{
+	"WELCOME": "Welcome to Smartglass",
+	"WELCOME_HELP": "Login to see your twins available",
+	"INVALID_EMAIL": "Invalid email",
+	"EMAIL_REQUIRED": "Email is required",
+	"INVALID_PWD": "Password must have at least 6 characters",
+	"PWD_DONT_MATCH": "Passwords don't match",
+	"PWD_REQUIRED": "Password is required",
+	"PWD_CONFIRM_REQUIRED": "Password confirmation is required",
+	"PWD": "Password",
+	"PWD_CONFIRM": "Password confirmation",
+	"LOGIN_HELP": "¿Don't have an account?",
+	"SIGNUP_HELP": "¿Already have an account?",
+	"SIGNUP": "Sing up",
+	"LOGIN": "Login"
+}
