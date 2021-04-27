@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-	<div class="alert alert-danger font-weight-bold text-center" role="alert" *transloco="let t">
-		{{ t(message) }}
+	<div class="alert alert-danger font-weight-bold text-center" role="alert" *transloco="let t; scope: 'errors'">
+		{{ t('errors.' + message) }}
 	</div>
 </div>

@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
+import { LangRetrieverService } from '../../services/lang-retriever.service';
 
 @Component({
 	selector: 'app-change-lang',
 	templateUrl: './change-lang.component.html',
-	styles: [],
 })
 export class ChangeLangComponent implements OnInit {
-	currentLang = 'es';
-	availableLangs: string[] = ['es', 'en'];
+	currentLang = '';
+	availableLangs: string[] = [];
 
-	constructor(private translocoService: TranslocoService) {}
+	constructor(private langRetriever: LangRetrieverService) {}
 
 	ngOnInit() {
-		this.currentLang = this.translocoService.getActiveLang();
-		this.availableLangs = this.translocoService.getAvailableLangs() as string[];
+		this.currentLang = this.langRetriever.activeLang;
+		this.availableLangs = this.langRetriever.availableLangs;
 	}
 
 	changeLang(lang: string) {
-		this.currentLang = lang;
-		this.translocoService.setActiveLang(lang);
+		this.currentLang = this.langRetriever.changeLang(lang);
 	}
 }

@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="model.dataSource" class="w-100">
+<mat-table [dataSource]="model.dataSource" class="w-100">
 	<ng-container *ngFor="let column of model.columns" matColumnDef="{{ column.id }}">
 		<mat-header-cell *matHeaderCellDef>{{ 'twins.' + column.header | transloco }}</mat-header-cell>
 		<mat-cell *matCellDef="let element">{{ element[column.id] }}</mat-cell>
@@ -6,6 +6,10 @@
 
 	<mat-header-row *matHeaderRowDef="model | tableIds"></mat-header-row>
 	<mat-row *matRowDef="let row; columns: model | tableIds"></mat-row>
-</table>
+</mat-table>
 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<mat-paginator
+	[ngStyle]="{ display: isLargeScreen ? 'block' : 'none' }"
+	[pageSizeOptions]="[5, 10, 20]"
+	showFirstLastButtons
+></mat-paginator>

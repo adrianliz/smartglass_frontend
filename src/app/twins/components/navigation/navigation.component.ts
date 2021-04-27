@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { EMPTY, Observable } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
-import { TwinModel } from '../../models/twin.model';
+import { TwinInfo } from '../../models/twin-info';
 import { TwinsService } from '../../services/twins.service';
 
 @Component({
@@ -10,12 +11,12 @@ import { TwinsService } from '../../services/twins.service';
 })
 export class NavigationComponent implements OnInit {
 	@Input() sidenav!: MatSidenav;
-	twins: TwinModel[] = [];
+	twinsInfo: Observable<TwinInfo[]> = EMPTY;
 
 	constructor(private twinsService: TwinsService, private authService: AuthService) {}
 
 	ngOnInit(): void {
-		this.twinsService.getTwinModels().subscribe((res) => (this.twins = res));
+		this.twinsInfo = this.twinsService.getTwinsInfo();
 	}
 
 	logout() {

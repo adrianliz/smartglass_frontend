@@ -1,6 +1,6 @@
-import { TwinStateId } from './twin.model';
+import { TwinStateId } from './twin-info';
 
-export interface TwinModelResponse {
+export interface TwinInfoResponse {
 	twinName: string;
 	machineSeries: string;
 	machineModel: string;

@@ -4,12 +4,12 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { MaterialModule } from '../material/material.module';
 import { ChangeLangComponent } from './components/change-lang/change-lang.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
-import { LoadingComponent } from './components/loading/loading.component';
+import { LoaderComponent } from './components/loader/loader.component';
 import { RefreshComponent } from './components/refresh/refresh.component';
 
 @NgModule({
-	declarations: [LoadingComponent, ErrorMessageComponent, RefreshComponent, ChangeLangComponent],
+	declarations: [ChangeLangComponent, ErrorMessageComponent, LoaderComponent, RefreshComponent],
 	imports: [CommonModule, MaterialModule, TranslocoModule],
-	exports: [LoadingComponent, RefreshComponent, ErrorMessageComponent, ChangeLangComponent],
+	exports: [ChangeLangComponent, ErrorMessageComponent, LoaderComponent, RefreshComponent],
 })
 export class SharedModule {}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ErrorMessage } from '../../models/consts';
-import { TwinModel } from '../../models/twin.model';
+import { TwinInfo } from '../../models/twin-info';
 import { TwinsService } from '../../services/twins.service';
 
 @Component({
@@ -8,8 +10,7 @@ import { TwinsService } from '../../services/twins.service';
 	templateUrl: './twins.component.html',
 })
 export class TwinsComponent implements OnInit {
-	twinsModels: TwinModel[] = [];
-	loading = false;
+	twinsInfo: Observable<TwinInfo[]> = EMPTY;
 	error?: ErrorMessage;
 
 	constructor(private twinsService: TwinsService) {}
@@ -20,17 +21,12 @@ export class TwinsComponent implements OnInit {
 
 	loadTwins() {
 		this.error = undefined;
-		this.loading = true;
-		this.twinsModels = [];
-		this.twinsService.getTwinModels().subscribe(
-			(res) => {
-				this.twinsModels = res;
-				this.loading = false;
-			},
-			() => {
+
+		this.twinsInfo = this.twinsService.getTwinsInfo().pipe(
+			catchError(() => {
 				this.error = ErrorMessage.TWINS_ERROR;
-				this.loading = false;
-			}
+				return EMPTY;
+			})
 		);
 	}
 }

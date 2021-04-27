@@ -34,5 +34,6 @@
 	"TOOL_ANGLE_MM": "MM de ángulo de rulina",
 	"WHEEL_DIAMETER_MM": "MM de diámetro de la muela",
 	"ERROR_CAUSE": "Causa del error",
-	"ERROR_TIMES_OCCURRED": "Veces que ha ocurrido"
+	"ERROR_TIMES_OCCURRED": "Veces que ha ocurrido",
+	"NO_DATA": "Ningún dato disponible"
 }

@@ -18,7 +18,12 @@
 			<mat-panel-title *transloco="let t">{{ t('twins.TWINS') }}</mat-panel-title>
 			<mat-panel-description *transloco="let t">{{ t('twins.TWINS_DESCRIPTION') }}</mat-panel-description>
 		</mat-expansion-panel-header>
-		<a *ngFor="let twin of twins" mat-list-item [routerLink]="['/dashboard', twin.name]" (click)="sidenav.toggle()">
+		<a
+			*ngFor="let twin of twinsInfo | async"
+			mat-list-item
+			[routerLink]="['/dashboard', twin.name]"
+			(click)="sidenav.toggle()"
+		>
 			{{ twin.name }}
 			<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
 		</a>

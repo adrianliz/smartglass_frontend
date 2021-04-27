@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
 import {
 	Translation,
@@ -10,12 +10,13 @@ import {
 } from '@ngneat/transloco';
 import { environment } from '../../environments/environment';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class TranslocoHttpLoader implements TranslocoLoader {
-	constructor(private http: HttpClient) {}
+	constructor(private handler: HttpBackend) {}
 
 	getTranslation(lang: string) {
-		return this.http.get<Translation>(`./assets/i18n/${lang}.json`);
+		const http = new HttpClient(this.handler);
+		return http.get<Translation>(`./assets/i18n/${lang}.json`);
 	}
 }
 

@@ -12,7 +12,7 @@ export class StatisticCardComponent implements AfterViewInit {
 	@Input() statistic!: Statistic;
 	@Input() twinName!: string;
 	periods = ALLOWED_PERIODS;
-	loading?: boolean;
+	loading = false;
 	error?: ErrorMessage;
 
 	@ViewChild(StatisticItemDirective, { static: true })
@@ -26,30 +26,32 @@ export class StatisticCardComponent implements AfterViewInit {
 
 	ngAfterViewInit(): void {
 		this.loadStatistic(ALLOWED_PERIODS[0]);
-		/* MUST detect changes, because we are updating error and loading parameters in
+		/* MUST detect changes, because we are updating error and loader parameters in
 		 * afterViewInit, where angular DONT check changes
 		 */
 		this.changeDetectorRef.detectChanges();
 	}
 
 	loadStatistic(periodId: PeriodId) {
-		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.statistic.component);
+		if (!this.loading) {
+			const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.statistic.component);
 
-		const viewContainerRef = this.statisticItem.viewContainerRef;
-		viewContainerRef.clear();
+			const viewContainerRef = this.statisticItem.viewContainerRef;
+			viewContainerRef.clear();
 
-		this.error = undefined;
-		this.loading = true;
-		this.statisticsService.getStatisticModel(this.twinName, this.statistic.id, periodId)?.subscribe(
-			(res) => {
-				const componentRef = viewContainerRef.createComponent<StatisticComponent>(componentFactory);
-				componentRef.instance.model = res;
-				this.loading = false;
-			},
-			() => {
-				this.error = ErrorMessage.STATISTIC_ERROR;
-				this.loading = false;
-			}
-		);
+			this.error = undefined;
+			this.loading = true;
+			this.statisticsService.getStatisticModel(this.twinName, this.statistic.id, periodId)?.subscribe(
+				(res) => {
+					const componentRef = viewContainerRef.createComponent<StatisticComponent>(componentFactory);
+					componentRef.instance.model = res;
+					this.loading = false;
+				},
+				() => {
+					this.error = ErrorMessage.STATISTIC_ERROR;
+					this.loading = false;
+				}
+			);
+		}
 	}
 }

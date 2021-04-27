@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
 
@@ -9,8 +10,6 @@ import { AuthService } from '../../services/auth.service';
 	templateUrl: './login.component.html',
 })
 export class LoginComponent {
-	loadingDashboard = false;
-
 	loginForm: FormGroup = this.formBuilder.group({
 		email: ['', [Validators.required, Validators.email]],
 		password: ['', [Validators.required]],
@@ -28,18 +27,19 @@ export class LoginComponent {
 		}
 		const { email, password } = this.loginForm.value;
 
-		this.loadingDashboard = true;
-		this.authService.login(email, password).subscribe((res) => {
-			if (res.ok) {
-				this.router.navigateByUrl('/dashboard').then(() => (this.loadingDashboard = false));
-			} else {
-				this.loadingDashboard = false;
-				Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: res.errorMessage,
-				});
-			}
-		});
+		this.authService
+			.login(email, password)
+			.pipe(take(1))
+			.subscribe((res) => {
+				if (res.ok) {
+					this.router.navigateByUrl('/dashboard');
+				} else {
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: res.errorMessage,
+					});
+				}
+			});
 	}
 }

@@ -11,16 +11,18 @@ import { MainComponent } from './pages/main/main.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
-	declarations: [SignUpComponent, LoginComponent, MainComponent],
+	declarations: [LoginComponent, SignUpComponent, MainComponent],
 	imports: [
 		CommonModule,
-		AuthRoutingModule,
 		FormsModule,
+		MaterialModule,
 		ReactiveFormsModule,
 		SharedModule,
-		MaterialModule,
+
 		SweetAlert2Module,
 		TranslocoModule,
+
+		AuthRoutingModule,
 	],
 	providers: [{ provide: TRANSLOCO_SCOPE, useValue: 'auth' }],
 })

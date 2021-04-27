@@ -55,24 +55,22 @@ export class MachineUsagePipe implements PipeTransform {
 
 		const workingPoints: ChartPoint[] = [];
 		const onPoints: ChartPoint[] = [];
-		machineUsages.forEach((machineUsage) => {
-			const workingHours = this.secondsToHours.transform(machineUsage[1].workingSeconds);
-			const onHours = this.secondsToHours.transform(machineUsage[1].onSeconds);
+		machineUsages
+			.filter((machineUsage) => machineUsage[1].workingSeconds > 0 || machineUsage[1].onSeconds > 0)
+			.forEach((machineUsage) => {
+				const workingHours = this.secondsToHours.transform(machineUsage[1].workingSeconds);
+				const onHours = this.secondsToHours.transform(machineUsage[1].onSeconds);
 
-			if (workingHours > 0) {
 				workingPoints.push({
 					t: machineUsage[0].endDate.valueOf(),
 					y: workingHours,
 				});
-			}
 
-			if (onHours > 0) {
 				onPoints.push({
 					t: machineUsage[0].endDate.valueOf(),
 					y: onHours,
 				});
-			}
-		});
+			});
 		chart.datasets[0].data = workingPoints;
 		chart.datasets[1].data = onPoints;
 

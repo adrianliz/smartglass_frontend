@@ -12,11 +12,13 @@ import { StatisticImageComponent } from './components/statistic-image/statistic-
 import { StatisticTableComponent } from './components/statistic-table/statistic-table.component';
 import { TwinCardComponent } from './components/twin-card/twin-card.component';
 
+import { PreventDoubleClickDirective } from './directives/prevent-double-click.directive';
 import { StatisticItemDirective } from './directives/statistic-item.directive';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TwinComponent } from './pages/twin/twin.component';
 import { TwinsComponent } from './pages/twins/twins.component';
+
 import { DaysSplitterPipe } from './pipes/days-splitter.pipe';
 import { ErrorsPipe } from './pipes/errors.pipe';
 import { MachineUsagePipe } from './pipes/machine-usage.pipe';
@@ -28,58 +30,65 @@ import { SecondsToHoursPipe } from './pipes/seconds-to-hours.pipe';
 import { TableIdsPipe } from './pipes/table-ids.pipe';
 import { TimeDistributionPipe } from './pipes/time-distribution.pipe';
 import { ToolsPipe } from './pipes/tools.pipe';
-import { TwinModelPipe } from './pipes/twin-model.pipe';
+import { TwinInfoPipe } from './pipes/twin-info.pipe';
 import { StatisticsService } from './services/statistics.service';
 import { TwinsService } from './services/twins.service';
 import { TwinsRoutingModule } from './twins-routing.module';
 
 @NgModule({
 	declarations: [
-		DashboardComponent,
-		TwinsComponent,
-		TwinCardComponent,
-		TwinComponent,
 		NavigationComponent,
 		StatisticCardComponent,
 		StatisticChartComponent,
 		StatisticTableComponent,
 		StatisticImageComponent,
-		PercentagePipe,
-		TwinModelPipe,
-		RatioPipe,
-		MaterialsPipe,
-		TimeDistributionPipe,
-		TableIdsPipe,
-		ErrorsPipe,
-		OptimizationsPipe,
-		ToolsPipe,
+		TwinCardComponent,
+
+		DashboardComponent,
+		TwinComponent,
+		TwinsComponent,
+
 		DaysSplitterPipe,
+		ErrorsPipe,
 		MachineUsagePipe,
-		StatisticItemDirective,
+		MaterialsPipe,
+		OptimizationsPipe,
+		PercentagePipe,
+		RatioPipe,
 		SecondsToHoursPipe,
+		TableIdsPipe,
+		TimeDistributionPipe,
+		ToolsPipe,
+		TwinInfoPipe,
+
+		StatisticItemDirective,
+		PreventDoubleClickDirective,
 	],
 	imports: [
 		CommonModule,
-		TwinsRoutingModule,
-		SharedModule,
 		MaterialModule,
-		NgxGaugeModule,
+		SharedModule,
+
 		ChartsModule,
+		NgxGaugeModule,
 		TranslocoModule,
+
+		TwinsRoutingModule,
 	],
 	providers: [
-		TwinsService,
 		StatisticsService,
-		TwinModelPipe,
-		RatioPipe,
-		MaterialsPipe,
-		TimeDistributionPipe,
-		OptimizationsPipe,
-		ToolsPipe,
-		ErrorsPipe,
+		TwinsService,
+
 		DaysSplitterPipe,
+		ErrorsPipe,
 		MachineUsagePipe,
+		MaterialsPipe,
+		OptimizationsPipe,
+		RatioPipe,
 		SecondsToHoursPipe,
+		TimeDistributionPipe,
+		ToolsPipe,
+		TwinInfoPipe,
 		{ provide: TRANSLOCO_SCOPE, useValue: 'twins' },
 	],
 })

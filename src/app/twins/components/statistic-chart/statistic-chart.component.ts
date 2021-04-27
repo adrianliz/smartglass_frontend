@@ -1,12 +1,11 @@
-import { AfterViewInit, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, Input, ViewChild } from '@angular/core';
 import { TRANSLOCO_SCOPE, TranslocoService } from '@ngneat/transloco';
-import { BaseChartDirective, Label } from 'ng2-charts';
+import { BaseChartDirective } from 'ng2-charts';
 import { ChartModel, StatisticComponent } from '../../models/statistic.model';
 
 @Component({
 	selector: 'app-statistic-chart',
 	templateUrl: './statistic-chart.component.html',
-	styles: [],
 })
 export class StatisticChartComponent implements StatisticComponent, AfterViewInit {
 	@Input() model!: ChartModel;

@@ -1,38 +1,37 @@
 <mat-card class="mat-elevation-z8 rounded-lg">
 	<mat-card-header>
-		<div mat-card-avatar [ngClass]="getStateStyle(twin.currentState)"></div>
-		<mat-card-title>{{ twin.name }}</mat-card-title>
-		<mat-card-subtitle *transloco="let t">{{ t('twins.' + twin.currentState) }}</mat-card-subtitle>
+		<div mat-card-avatar [ngClass]="getStateStyle(twinInfo.currentState)"></div>
+		<mat-card-title>{{ twinInfo.name }}</mat-card-title>
+		<mat-card-subtitle *transloco="let t">{{ t('twins.' + twinInfo.currentState) }}</mat-card-subtitle>
 	</mat-card-header>
 
-	<img mat-card-image [src]="twin.img" [alt]="twin.name" class="m-2 img-fluid" />
+	<img mat-card-image [src]="twinInfo.img" [alt]="twinInfo.name" class="m-2 img-fluid" />
 
 	<mat-card-content>
 		<div class="text-secondary mb-4">
 			<p>
-				<b *transloco="let t">{{ t('twins.BRAND') }}</b> {{ twin.machineSeries }}
+				<b *transloco="let t">{{ t('twins.BRAND') }}</b> {{ twinInfo.machineSeries }}
 			</p>
 			<p>
-				<b *transloco="let t">{{ t('twins.MODEL') }}</b> {{ twin.machineModel }}
+				<b *transloco="let t">{{ t('twins.MODEL') }}</b> {{ twinInfo.machineModel }}
 			</p>
 		</div>
 
 		<p>Ratios</p>
 		<hr class="border-dark" />
 		<div class="text-center">
-			<app-loading *ngIf="loading"></app-loading>
-			<app-error-message *ngIf="!loading && error" [message]="error"></app-error-message>
+			<app-error-message *ngIf="error; else showRatios" [message]="error"></app-error-message>
 
-			<ng-container *ngIf="!loading && !error">
+			<ng-template #showRatios>
 				<ngx-gauge
-					*ngFor="let ratio of ratios"
+					*ngFor="let ratio of ratios | async"
 					[value]="ratio.value | percentage"
 					[label]="'twins.' + ratio.id | transloco"
 					[size]="120"
 					append="%"
 					class="ml-3"
 				></ngx-gauge>
-			</ng-container>
+			</ng-template>
 		</div>
 	</mat-card-content>
 
@@ -40,7 +39,7 @@
 		<div class="text-right m-3">
 			<button
 				mat-raised-button
-				[routerLink]="['/dashboard', twin.name]"
+				[routerLink]="['/dashboard', twinInfo.name]"
 				color="primary"
 				class="mat-elevation-z8"
 				*transloco="let t"
