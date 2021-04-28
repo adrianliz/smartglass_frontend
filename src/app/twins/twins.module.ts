@@ -74,6 +74,8 @@ import { TwinsRoutingModule } from './twins-routing.module';
 		TranslocoModule,
 
 		TwinsRoutingModule,
+		ChartsModule,
+		ChartsModule,
 	],
 	providers: [
 		StatisticsService,

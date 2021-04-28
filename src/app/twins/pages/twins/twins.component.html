@@ -5,7 +5,7 @@
 <app-error-message *ngIf="error; else showTwinCards" [message]="error"></app-error-message>
 
 <ng-template #showTwinCards>
-	<div class="justify-content-center row row-cols-1 row-cols-md-3">
+	<div class="justify-content-center row row-cols-1 row-cols-sm-2 row-cols-md-3">
 		<div *ngFor="let twinInfo of twinsInfo | async" class="col mb-4">
 			<app-twin-card [twinInfo]="twinInfo"></app-twin-card>
 		</div>

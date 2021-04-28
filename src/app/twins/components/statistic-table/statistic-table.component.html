@@ -8,8 +8,6 @@
 	<mat-row *matRowDef="let row; columns: model | tableIds"></mat-row>
 </mat-table>
 
-<mat-paginator
-	[ngStyle]="{ display: isLargeScreen ? 'block' : 'none' }"
-	[pageSizeOptions]="[5, 10, 20]"
-	showFirstLastButtons
-></mat-paginator>
+<div class="row-2">
+	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

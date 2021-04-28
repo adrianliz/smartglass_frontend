@@ -3,7 +3,7 @@
 <div class="container-fluid d-flex flex-column min-vh-100">
 	<div class="row">
 		<div class="col-lg-6 gradient-bg">
-			<div class="row align-items-center text-white text-center vh-100">
+			<div class="row align-items-center text-white text-center mx-2 vh-100">
 				<h1 class="mat-display-3 mx-auto" *transloco="let t">
 					{{ t('auth.WELCOME') }}
 					<div class="mat-title" *transloco="let t">{{ t('auth.WELCOME_HELP') }}</div>
@@ -14,7 +14,7 @@
 		<div class="col-lg-6 my-5 my-lg-0">
 			<div class="row align-items-center justify-content-center h-100">
 				<mat-card class="mat-elevation-z8 rounded-lg text-center mx-3">
-					<mat-card-content class="overflow-hidden">
+					<mat-card-content>
 						<div class="d-flex justify-content-end">
 							<mat-icon>language</mat-icon>
 							<app-change-lang></app-change-lang>

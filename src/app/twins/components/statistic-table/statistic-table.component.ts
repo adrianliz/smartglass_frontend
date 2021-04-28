@@ -7,25 +7,16 @@ import { StatisticComponent, TableModel } from '../../models/statistic.model';
 @Component({
 	selector: 'app-statistic-table',
 	templateUrl: './statistic-table.component.html',
+	styleUrls: ['./statistic-table.component.css'],
 })
 export class StatisticTableComponent implements StatisticComponent, OnInit {
 	@Input() model!: TableModel;
-	isLargeScreen = false;
 
 	@ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
-	constructor(private breakpointObserver: BreakpointObserver) {}
+	constructor() {}
 
 	ngOnInit(): void {
-		this.breakpointObserver
-			.observe(['(min-width: 600px)'])
-			.pipe(tap((result) => (this.isLargeScreen = result.matches)))
-			.subscribe((result) => {
-				if (result.matches) {
-					this.model.dataSource.paginator = this.paginator;
-				} else {
-					this.model.dataSource.paginator = null;
-				}
-			});
+		this.model.dataSource.paginator = this.paginator;
 	}
 }
