@@ -1,7 +1,7 @@
 {
 	"GO_BACK": "Go back",
 	"SHOW_MORE": "Show more",
-	"PROFILE": "Your profile",
+	"PROFILE": "My profile",
 	"TWINS": "Twins",
 	"TWINS_DESCRIPTION": "Check out your twins",
 	"BRAND": "Brand",
@@ -9,7 +9,7 @@
 	"IN_STANDBY": "In standby",
 	"IN_BREAKDOWN": "In breakdown",
 	"OFF": "Power off",
-	"DOING_PROCESS": "Doing a process",
+	"DOING_PROCESS": "Processing",
 	"AVAILABILITY": "Availability",
 	"EFFICIENCY": "Efficiency",
 	"EFFECTIVENESS": "Effectiveness",
@@ -34,5 +34,6 @@
 	"TOOL_ANGLE_MM": "MM of tool angle",
 	"WHEEL_DIAMETER_MM": "MM of wheel diameter",
 	"ERROR_CAUSE": "Error cause",
-	"ERROR_TIMES_OCCURRED": "Times occurred"
+	"ERROR_TIMES_OCCURRED": "Times occurred",
+	"NO_DATA": "No data available"
 }

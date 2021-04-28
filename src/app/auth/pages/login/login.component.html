@@ -29,9 +29,7 @@
 		<a class="d-inline" routerLink="../signup" *transloco="let t">{{ t('auth.SIGNUP') }}</a>
 	</p>
 
-	<app-loading *ngIf="loadingDashboard"></app-loading>
-
-	<div *ngIf="!loadingDashboard" class="text-right m-3">
+	<div class="text-right m-3">
 		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit" *transloco="let t">
 			{{ t('auth.LOGIN') }}
 		</button>

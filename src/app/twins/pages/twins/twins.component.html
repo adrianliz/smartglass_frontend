@@ -1,11 +1,13 @@
-<div class="text-right">
-	<app-refresh (click)="loadTwins()"></app-refresh>
+<div class="text-right mb-3">
+	<app-refresh appPreventDoubleClick (throttledClick)="loadTwins()"></app-refresh>
 </div>
-<app-loading *ngIf="loading"></app-loading>
-<app-error-message *ngIf="!loading && error" [message]="error"></app-error-message>
 
-<div *ngIf="!loading && !error" class="justify-content-center row row-cols-1 row-cols-md-3">
-	<div *ngFor="let twin of twinsModels" class="col mb-4">
-		<app-twin-card [twin]="twin"></app-twin-card>
+<app-error-message *ngIf="error; else showTwinCards" [message]="error"></app-error-message>
+
+<ng-template #showTwinCards>
+	<div class="justify-content-center row row-cols-1 row-cols-sm-2 row-cols-md-3">
+		<div *ngFor="let twinInfo of twinsInfo | async" class="col mb-4">
+			<app-twin-card [twinInfo]="twinInfo"></app-twin-card>
+		</div>
 	</div>
-</div>
+</ng-template>

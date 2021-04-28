@@ -1,10 +1,11 @@
-<div class="d-block" *transloco="let t">
+<div class="d-block">
 	<canvas
 		*ngIf="model"
 		baseChart
 		[datasets]="model.datasets"
 		[labels]="model.labels"
 		[chartType]="model.type"
+		[legend]="(isLargeScreen | async) || false"
 		[options]="model.options"
 	>
 	</canvas>

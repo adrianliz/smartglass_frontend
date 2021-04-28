@@ -13,7 +13,6 @@ import { TwinsService } from '../../services/twins.service';
 export class TwinComponent implements OnInit {
 	twinName = '';
 	statistics: Statistic[] = [];
-	loading = false;
 	showRefresh = false;
 	error?: ErrorMessage;
 
@@ -23,21 +22,18 @@ export class TwinComponent implements OnInit {
 	constructor(private twinsService: TwinsService, private activatedRoute: ActivatedRoute) {}
 
 	ngOnInit(): void {
-		this.loading = true;
-		this.activatedRoute.params.pipe(switchMap(({ twinName }) => this.twinsService.getTwinModel(twinName))).subscribe(
+		this.activatedRoute.params.pipe(switchMap(({ twinName }) => this.twinsService.getTwinInfo(twinName))).subscribe(
 			(res) => {
 				this.twinName = res.name;
 				this.statistics = ALLOWED_STATISTICS;
-				this.loading = false;
 				this.showRefresh = true;
 			},
 			(err) => {
 				if (err.status === 404) {
 					this.error = ErrorMessage.TWIN_NOT_FOUND;
-				} else if (err.status === 0) {
+				} else {
 					this.error = ErrorMessage.TWIN_ERROR;
 				}
-				this.loading = false;
 			}
 		);
 	}

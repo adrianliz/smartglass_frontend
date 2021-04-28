@@ -1,20 +1,22 @@
 <div class="row mb-3">
-	<div class="col text-left">
+	<div class="col mb-2 mb-sm-0 text-center text-sm-left">
 		<button mat-raised-button routerLink="/twins" color="primary" class="mat-elevation-z8" *transloco="let t">
 			<mat-icon>arrow_back_ios</mat-icon>
 			{{ t('twins.GO_BACK') }}
 		</button>
 	</div>
-	<div class="col text-right">
-		<app-refresh *ngIf="showRefresh" (click)="refreshStatistics()"></app-refresh>
+
+	<div class="col text-center text-sm-right">
+		<app-refresh *ngIf="showRefresh" appPreventDoubleClick (throttledClick)="refreshStatistics()"></app-refresh>
 	</div>
 </div>
 
-<app-loading *ngIf="loading"></app-loading>
-<app-error-message *ngIf="!loading && error" [message]="error"></app-error-message>
+<app-error-message *ngIf="error; else showStatisticsCards" [message]="error"></app-error-message>
 
-<div *ngIf="!loading && !error" class="row row-cols-1 row-cols-md-2">
-	<div *ngFor="let statistic of statistics" class="col mb-4">
-		<app-statistic-card [statistic]="statistic" [twinName]="twinName"></app-statistic-card>
+<ng-template #showStatisticsCards>
+	<div class="justify-content-center row row-cols-1 row-cols-md-2">
+		<div *ngFor="let statistic of statistics" class="col mb-4">
+			<app-statistic-card [statistic]="statistic" [twinName]="twinName"></app-statistic-card>
+		</div>
 	</div>
-</div>
+</ng-template>

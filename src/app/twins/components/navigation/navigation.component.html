@@ -1,24 +1,27 @@
-<mat-toolbar color="secondary" class="bg-white">
-	<img src="assets/img/logo.jpg" class="text-center" alt="logo" />
-</mat-toolbar>
+<mat-nav-list class="d-flex flex-column text-center overflow-auto">
+	<img src="assets/img/logo.jpg" alt="logo" />
 
-<mat-nav-list>
-	<a mat-list-item routerLink="./twins" (click)="sidenav.toggle()">
+	<a mat-list-item routerLink="./twins">
 		Home
 		<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
 	</a>
 
-	<a mat-list-item routerLink="./twins" (click)="sidenav.toggle()" *transloco="let t">
+	<a mat-list-item routerLink="./twins" *transloco="let t">
 		{{ t('twins.PROFILE') }}
 		<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
 	</a>
 
-	<mat-expansion-panel class="mat-elevation-z0">
+	<mat-expansion-panel class="mat-elevation-z0" (click)="sidenav.toggle()">
 		<mat-expansion-panel-header>
 			<mat-panel-title *transloco="let t">{{ t('twins.TWINS') }}</mat-panel-title>
 			<mat-panel-description *transloco="let t">{{ t('twins.TWINS_DESCRIPTION') }}</mat-panel-description>
 		</mat-expansion-panel-header>
-		<a *ngFor="let twin of twins" mat-list-item [routerLink]="['/dashboard', twin.name]" (click)="sidenav.toggle()">
+		<a
+			*ngFor="let twin of twinsInfo | async"
+			mat-list-item
+			[routerLink]="['/dashboard', twin.name]"
+			(click)="sidenav.toggle()"
+		>
 			{{ twin.name }}
 			<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
 		</a>

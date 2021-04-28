@@ -5,6 +5,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { LangRetrieverService } from '../../shared/services/lang-retriever.service';
 import { AuthResponse } from '../models/auth-response.model';
 import { ErrorResponse, IdentityResponse, UserDataResponse } from '../models/firebase-response.model';
 import { User } from '../models/user.model';
@@ -31,7 +32,7 @@ export class AuthService {
 	private translateError(error: string): Observable<AuthResponse> {
 		const cleanError = error.replace(AuthService.ERROR_CLEANER_REGEXP, '');
 
-		return this.translocoService.selectTranslate(cleanError).pipe(
+		return this.translocoService.selectTranslate(cleanError, {}, { scope: 'errors' }).pipe(
 			map<string, AuthResponse>((res) => {
 				return { ok: false, errorMessage: res };
 			})
@@ -48,7 +49,9 @@ export class AuthService {
 					localStorage.setItem(AuthService.ID_TOKEN, res.idToken);
 					return { ok: true };
 				}),
-				catchError((err: ErrorResponse) => this.translateError(err.error.error.message))
+				catchError((err: ErrorResponse) => {
+					return this.translateError(err.error.error.message);
+				})
 			);
 	}
 
@@ -85,7 +88,12 @@ export class AuthService {
 	}
 
 	logout() {
+		const idLang = localStorage.getItem(LangRetrieverService.ID_LANG);
 		localStorage.clear();
+
+		if (idLang) {
+			localStorage.setItem(LangRetrieverService.ID_LANG, idLang);
+		}
 		this.router.navigateByUrl('auth');
 	}
 }

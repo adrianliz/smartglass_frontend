@@ -1,0 +1,23 @@
+mat-table {
+	overflow: auto;
+}
+
+mat-paginator {
+	display: flex;
+	justify-content: center;
+}
+
+@media only screen and (max-width: 576px) and (orientation: portrait) {
+	mat-header-row,
+	mat-row {
+		width: 220%;
+	}
+
+	::ng-deep .mat-paginator-page-size {
+		display: none !important;
+	}
+
+	::ng-deep .mat-paginator-range-label {
+		display: none !important;
+	}
+}

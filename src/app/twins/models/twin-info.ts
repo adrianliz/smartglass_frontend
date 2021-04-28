@@ -5,7 +5,7 @@ export const enum TwinStateId {
 	DOING_PROCESS = 'DOING_PROCESS',
 }
 
-export interface TwinModel {
+export interface TwinInfo {
 	name: string;
 	machineSeries: string;
 	machineModel: string;

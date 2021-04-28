@@ -1,5 +1,6 @@
+<app-loader></app-loader>
 <mat-sidenav-container fullscreen>
-	<mat-sidenav #sidenav mode="over">
+	<mat-sidenav #sidenav mode="over" (click)="sidenav.toggle()">
 		<app-navigation [sidenav]="sidenav"></app-navigation>
 	</mat-sidenav>
 
@@ -16,7 +17,7 @@
 		</mat-toolbar-row>
 	</mat-toolbar>
 
-	<div class="mx-5 my-3">
+	<div class="mx-3 mt-2">
 		<router-outlet></router-outlet>
 	</div>
 </mat-sidenav-container>

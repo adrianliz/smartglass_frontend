@@ -23,9 +23,9 @@ export const enum PeriodId {
 export const ALLOWED_PERIODS: PeriodId[] = [PeriodId.THIS_YEAR, PeriodId.THIS_MONTH, PeriodId.THIS_WEEK];
 
 export const DATE_RANGES = new Map<PeriodId, DateRange>([
-	[PeriodId.THIS_YEAR, { startDate: dayjs().startOf('year'), endDate: dayjs().endOf('year') }],
-	[PeriodId.THIS_MONTH, { startDate: dayjs().startOf('month'), endDate: dayjs().endOf('month') }],
-	[PeriodId.THIS_WEEK, { startDate: dayjs().startOf('week'), endDate: dayjs().endOf('week') }],
+	[PeriodId.THIS_YEAR, { startDate: dayjs().startOf('year'), endDate: dayjs().endOf('day') }],
+	[PeriodId.THIS_MONTH, { startDate: dayjs().startOf('month'), endDate: dayjs().endOf('day') }],
+	[PeriodId.THIS_WEEK, { startDate: dayjs().startOf('week'), endDate: dayjs().endOf('day') }],
 ]);
 
 export const API_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
@@ -89,3 +89,7 @@ export const ERRORS_PRODUCED_COLUMNS: TableColumn[] = [
 	{ id: 'cause', header: 'ERROR_CAUSE' },
 	{ id: 'timesOccurred', header: 'ERROR_TIMES_OCCURRED' },
 ];
+
+export const NO_DATA_LABEL: Label = 'NO_DATA';
+
+export const NO_DATA_DATASET = { data: [100], backgroundColor: '#F2EEE8' };

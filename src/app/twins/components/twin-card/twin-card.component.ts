@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ErrorMessage } from '../../models/consts';
 import { Ratio } from '../../models/ratio.model';
-import { TwinModel, TwinStateId } from '../../models/twin.model';
+import { TwinInfo, TwinStateId } from '../../models/twin-info';
 import { StatisticsService } from '../../services/statistics.service';
 
 @Component({
@@ -9,24 +11,18 @@ import { StatisticsService } from '../../services/statistics.service';
 	templateUrl: './twin-card.component.html',
 })
 export class TwinCardComponent implements OnInit {
-	@Input() twin!: TwinModel;
-	ratios: Ratio[] = [];
-	loading = false;
+	@Input() twinInfo!: TwinInfo;
+	ratios: Observable<Ratio[]> = EMPTY;
 	error?: ErrorMessage;
 
 	constructor(private twinService: StatisticsService) {}
 
 	ngOnInit(): void {
-		this.loading = true;
-		this.twinService.getRatios(this.twin.name).subscribe(
-			(res) => {
-				this.ratios = res;
-				this.loading = false;
-			},
-			() => {
+		this.ratios = this.twinService.getRatios(this.twinInfo.name).pipe(
+			catchError(() => {
 				this.error = ErrorMessage.RATIOS_ERROR;
-				this.loading = false;
-			}
+				return EMPTY;
+			})
 		);
 	}
 

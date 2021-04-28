@@ -10,7 +10,7 @@ export interface StatisticComponent {
 
 export interface Statistic {
 	id: StatisticId;
-	component: Type<any>;
+	component: Type<StatisticComponent>;
 }
 
 export interface ChartModel {
