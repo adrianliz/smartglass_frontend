@@ -8,6 +8,7 @@ import { TwinsService } from '../../services/twins.service';
 @Component({
 	selector: 'app-navigation',
 	templateUrl: './navigation.component.html',
+	styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent implements OnInit {
 	@Input() sidenav!: MatSidenav;
@@ -15,7 +16,7 @@ export class NavigationComponent implements OnInit {
 
 	constructor(private twinsService: TwinsService, private authService: AuthService) {}
 
-	ngOnInit(): void {
+	ngOnInit() {
 		this.twinsInfo = this.twinsService.getTwinsInfo();
 	}
 

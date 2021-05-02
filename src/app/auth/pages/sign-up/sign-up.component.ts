@@ -28,7 +28,7 @@ export class SignUpComponent {
 		return this.signUpForm.controls;
 	}
 
-	signUp(): void {
+	signUp() {
 		if (!this.signUpForm.valid) {
 			return;
 		}

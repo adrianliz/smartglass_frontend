@@ -10,6 +10,8 @@
 				<mat-icon>menu</mat-icon>
 			</button>
 
+			<app-user-icon [size]="50" (iconClick)="goToProfile()"></app-user-icon>
+
 			<span class="spacer"></span>
 
 			<mat-icon>language</mat-icon>
@@ -20,4 +22,6 @@
 	<div class="mx-3 mt-2">
 		<router-outlet></router-outlet>
 	</div>
+
+	<app-footer></app-footer>
 </mat-sidenav-container>

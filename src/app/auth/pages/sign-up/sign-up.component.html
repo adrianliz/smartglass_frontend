@@ -5,7 +5,7 @@
 		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>Email</mat-label>
 			<label>
-				<input matInput formControlName="email" type="email" />
+				<input matInput formControlName="email" type="email" required />
 			</label>
 			<mat-error *ngIf="controls.email.errors">
 				<span *ngIf="controls.email.errors.required">{{ 'auth.EMAIL_REQUIRED' | transloco }}</span>
@@ -18,7 +18,7 @@
 		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>{{ 'auth.PWD' | transloco }}</mat-label>
 			<label>
-				<input matInput formControlName="password" type="password" />
+				<input matInput formControlName="password" type="password" required />
 			</label>
 			<mat-error *ngIf="controls.password.errors">
 				<span *ngIf="controls.password.errors.required">{{ 'auth.PWD_REQUIRED' | transloco }}</span>
@@ -31,7 +31,7 @@
 		<mat-form-field class="form-field" appearance="standard">
 			<mat-label>{{ 'auth.PWD_CONFIRM' | transloco }}</mat-label>
 			<label>
-				<input matInput formControlName="confirmedPassword" type="password" />
+				<input matInput formControlName="confirmedPassword" type="password" required />
 			</label>
 			<mat-error *ngIf="controls.confirmedPassword.errors">
 				<span *ngIf="controls.confirmedPassword.errors.required">{{ 'auth.PWD_CONFIRM_REQUIRED' | transloco }}</span>
@@ -45,7 +45,7 @@
 		<a class="d-inline" routerLink="../login" *transloco="let t">{{ t('auth.LOGIN') }}</a>
 	</p>
 
-	<div class="text-right m-3">
+	<div class="text-right">
 		<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit" *transloco="let t">
 			{{ t('auth.SIGNUP') }}
 		</button>

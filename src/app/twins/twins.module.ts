@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TRANSLOCO_SCOPE, TranslocoModule } from '@ngneat/transloco';
 import { ChartsModule } from 'ng2-charts';
 import { NgxGaugeModule } from 'ngx-gauge';
@@ -16,6 +17,7 @@ import { PreventDoubleClickDirective } from './directives/prevent-double-click.d
 import { StatisticItemDirective } from './directives/statistic-item.directive';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { TwinComponent } from './pages/twin/twin.component';
 import { TwinsComponent } from './pages/twins/twins.component';
 
@@ -45,6 +47,7 @@ import { TwinsRoutingModule } from './twins-routing.module';
 		TwinCardComponent,
 
 		DashboardComponent,
+		ProfileComponent,
 		TwinComponent,
 		TwinsComponent,
 
@@ -66,7 +69,9 @@ import { TwinsRoutingModule } from './twins-routing.module';
 	],
 	imports: [
 		CommonModule,
+		FormsModule,
 		MaterialModule,
+		ReactiveFormsModule,
 		SharedModule,
 
 		ChartsModule,
@@ -74,8 +79,6 @@ import { TwinsRoutingModule } from './twins-routing.module';
 		TranslocoModule,
 
 		TwinsRoutingModule,
-		ChartsModule,
-		ChartsModule,
 	],
 	providers: [
 		StatisticsService,

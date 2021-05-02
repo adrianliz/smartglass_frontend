@@ -1,12 +1,14 @@
-<mat-nav-list class="d-flex flex-column text-center overflow-auto">
-	<img src="assets/img/logo.jpg" alt="logo" />
+<mat-nav-list class="d-flex flex-column overflow-auto">
+	<div class="logo-container">
+		<img src="../../../../assets/img/logo.png" class="img-fluid" alt="logo-turomas" />
+	</div>
 
 	<a mat-list-item routerLink="./twins">
 		Home
 		<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
 	</a>
 
-	<a mat-list-item routerLink="./twins" *transloco="let t">
+	<a mat-list-item routerLink="./profile" *transloco="let t">
 		{{ t('twins.PROFILE') }}
 		<mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
 	</a>
@@ -19,7 +21,7 @@
 		<a
 			*ngFor="let twin of twinsInfo | async"
 			mat-list-item
-			[routerLink]="['/dashboard', twin.name]"
+			[routerLink]="['/dashboard/twin', twin.name]"
 			(click)="sidenav.toggle()"
 		>
 			{{ twin.name }}

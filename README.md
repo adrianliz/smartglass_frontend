@@ -53,27 +53,23 @@ Ir a [Smartglass](http://155.210.68.101)
 
 - :white_check_mark: v0.9.1 -> Loader global con interceptors y pulido general
 
+- :white_check_mark: v0.10.1 -> Perfil de usuario
+
+![v0.10.0](screenshots/v0.10.0_1.png)
+![v0.10.0](screenshots/v0.10.0_2.png)
+
 ## 📁 Variables de entorno
 
 Se deben usar estas variables en los ficheros environment.ts:
 - production: boolean -> Indica si es una build de producción
-- firebaseKey: string -> API key necesaria para Firebase
-- firebaseBaseURL: string -> URL base de la API identitytoolkit de Firebase
+- firebase: object -> Configuración de firebase
 - twinsBaseURL: string -> URL base de la API de gemelos del backend
 - statisticsBaseURL: string -> URL base de la API de estadísticas del backend
 
 ## 🏁 Integración continua
 
-¿Cómo desplegar el frontend en un servidor Apache 155.210.68.101? -> Ejecutar:
-- ng build --prod
-- scp -r dist alizaga@155.210.68.101:/home/alizaga/Escritorio/smartglass-frontend-builds/last
-- ssh alizaga@155.210.68.101 "rm -rf /var/www/smartglass/* && cp -r /home/alizaga/Escritorio/smartglass-frontend-builds/last/dist/smartglass/. /var/www/smartglass"
-- Reiniciar Apache como sudo (sudo service apache2 restart)
+¿Cómo desplegar el frontend en el servidor Apache de la máquina 155.210.68.101? -> Ejecutar:
+- ``make build && make up-remote``
 
 Nota: Se puede desplegar en cualquier otra máquina y/o servidor de forma parecida copiando el directorio dist resultado 
-de ng build --prod
-
-
-	
- 
-
+de ``make build``

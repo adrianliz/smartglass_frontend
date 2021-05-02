@@ -24,7 +24,7 @@ export class StatisticCardComponent implements AfterViewInit {
 		private statisticsService: StatisticsService
 	) {}
 
-	ngAfterViewInit(): void {
+	ngAfterViewInit() {
 		this.loadStatistic(ALLOWED_PERIODS[0]);
 		/* MUST detect changes, because we are updating error and loader parameters in
 		 * afterViewInit, where angular DONT check changes

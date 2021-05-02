@@ -15,7 +15,7 @@ export class TwinsComponent implements OnInit {
 
 	constructor(private twinsService: TwinsService) {}
 
-	ngOnInit(): void {
+	ngOnInit() {
 		this.loadTwins();
 	}
 

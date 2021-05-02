@@ -6,13 +6,13 @@ import { TwinInfo } from '../models/twin-info';
 	name: 'twinInfo',
 })
 export class TwinInfoPipe implements PipeTransform {
-	transform(twinModel: TwinInfoResponse): TwinInfo {
+	transform(twinInfoResponse: TwinInfoResponse): TwinInfo {
 		return {
-			name: twinModel.twinName,
-			machineSeries: twinModel.machineSeries,
-			machineModel: twinModel.machineModel,
-			currentState: twinModel.currentState,
-			img: 'assets/img/machine1.png', // TODO: mapping based on model and series
+			name: twinInfoResponse.twinName,
+			machineSeries: twinInfoResponse.machineSeries,
+			machineModel: twinInfoResponse.machineModel,
+			currentState: twinInfoResponse.currentState,
+			img: `assets/img/${twinInfoResponse.machineModel}.jpg`,
 		} as TwinInfo;
 	}
 }

@@ -17,7 +17,7 @@ export class TwinCardComponent implements OnInit {
 
 	constructor(private twinService: StatisticsService) {}
 
-	ngOnInit(): void {
+	ngOnInit() {
 		this.ratios = this.twinService.getRatios(this.twinInfo.name).pipe(
 			catchError(() => {
 				this.error = ErrorMessage.RATIOS_ERROR;

@@ -35,5 +35,12 @@
 	"WHEEL_DIAMETER_MM": "MM de diámetro de la muela",
 	"ERROR_CAUSE": "Causa del error",
 	"ERROR_TIMES_OCCURRED": "Veces que ha ocurrido",
-	"NO_DATA": "Ningún dato disponible"
+	"NO_DATA": "Ningún dato disponible",
+	"UPDATE_PROFILE": "Actualizar perfil",
+	"USERNAME": "Nombre de usuario",
+	"NEW_PWD": "Nueva contraseña",
+	"NEW_PWD_CONFIRM": "Repite la nueva contraseña",
+	"INVALID_USERNAME": "El nombre de usuario debe tener al menos 4 carácteres",
+	"INVALID_IMAGE": "No es un archivo de imagen valido",
+	"SUCCESS_UPDATE": "Perfil actualizado correctamente"
 }
