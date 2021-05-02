@@ -7,7 +7,7 @@ COPY package.json package-lock.json /app/
 RUN cd /app && npm install
 
 COPY . /app
-RUN cd /app && npm run build --prod
+RUN cd /app && npm run build
 
 FROM nginx:alpine
 
