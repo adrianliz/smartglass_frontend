@@ -21,7 +21,7 @@ export class TwinComponent implements OnInit {
 
 	constructor(private twinsService: TwinsService, private activatedRoute: ActivatedRoute) {}
 
-	ngOnInit(): void {
+	ngOnInit() {
 		this.activatedRoute.params.pipe(switchMap(({ twinName }) => this.twinsService.getTwinInfo(twinName))).subscribe(
 			(res) => {
 				this.twinName = res.name;
@@ -38,7 +38,7 @@ export class TwinComponent implements OnInit {
 		);
 	}
 
-	refreshStatistics(): void {
+	refreshStatistics() {
 		if (this.statisticCards) {
 			this.statisticCards.forEach((statisticCard) => statisticCard.loadStatistic(ALLOWED_PERIODS[0]));
 		}

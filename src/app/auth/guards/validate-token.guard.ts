@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 export class ValidateTokenGuard implements CanActivate, CanLoad {
 	constructor(private authService: AuthService) {}
 
-	private validateToken() {
+	private validateToken(): Observable<boolean> {
 		return this.authService.validateToken();
 	}
 

@@ -8,8 +8,14 @@ export interface IdentityResponse {
 }
 
 export interface UserDataResponse {
+	localId: string;
 	email: string;
-	displayName?: string;
+	displayName: string;
+	photoUrl: URL;
+}
+
+export interface UsersDataResponse {
+	users: UserDataResponse[];
 }
 
 export interface ErrorResponse {

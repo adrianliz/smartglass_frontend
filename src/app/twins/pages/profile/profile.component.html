@@ -1,0 +1,78 @@
+<mat-progress-bar mode="indeterminate" *ngIf="updating"></mat-progress-bar>
+
+<div class="d-flex text-center">
+	<mat-card class="mat-elevation-z8 rounded-lg mx-auto m-3">
+		<mat-card-content>
+			<h1 class="mat-display-2 text-break" *transloco="let t">{{ t('twins.UPDATE_PROFILE') }}</h1>
+
+			<form [formGroup]="profileForm" (submit)="updateProfile()">
+				<div class="form-group">
+					<app-user-icon
+						[previewImage]="previewImage"
+						[showInfo]="false"
+						(iconClick)="profileImage.click()"
+					></app-user-icon>
+
+					<input
+						class="d-none"
+						#profileImage
+						formControlName="profileImage"
+						(change)="handleImage($event)"
+						type="file"
+						accept=".png, .jpg, .jpeg"
+					/>
+					<mat-error *ngIf="controls.profileImage.errors">
+						<span *ngIf="controls.profileImage.errors.invalidImage">{{ 'twins.INVALID_IMAGE' | transloco }}</span>
+					</mat-error>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field class="form-field" appearance="standard">
+						<mat-label>{{ 'twins.USERNAME' | transloco }}</mat-label>
+						<label>
+							<input matInput formControlName="username" type="text" />
+						</label>
+						<mat-error *ngIf="controls.username.errors">
+							<span *ngIf="controls.username.errors.minlength">{{ 'twins.INVALID_USERNAME' | transloco }}</span>
+						</mat-error>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field class="form-field" appearance="standard">
+						<mat-label>{{ 'twins.NEW_PWD' | transloco }}</mat-label>
+						<label>
+							<input matInput formControlName="password" type="password" />
+						</label>
+						<mat-error *ngIf="controls.password.errors">
+							<ng-container *transloco="let t; scope: 'auth'">
+								<span *ngIf="controls.password.errors.minlength">{{ t('auth.INVALID_PWD') }}</span>
+							</ng-container>
+						</mat-error>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field class="form-field" appearance="standard">
+						<mat-label>{{ 'twins.NEW_PWD_CONFIRM' | transloco }}</mat-label>
+						<label>
+							<input matInput formControlName="confirmedPassword" type="password" />
+						</label>
+						<mat-error *ngIf="controls.confirmedPassword.errors">
+							<ng-container *transloco="let t; scope: 'auth'">
+								<span *ngIf="controls.confirmedPassword.errors.mustMatch">{{ t('auth.PWD_DONT_MATCH') }}</span>
+							</ng-container>
+						</mat-error>
+					</mat-form-field>
+				</div>
+
+				<div class="text-right">
+					<button mat-raised-button color="primary" class="mat-elevation-z8" type="submit" *transloco="let t">
+						<mat-icon>update</mat-icon>
+						{{ t('twins.UPDATE_PROFILE') }}
+					</button>
+				</div>
+			</form>
+		</mat-card-content>
+	</mat-card>
+</div>

@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
 	constructor() {}
+
+	scrollToAuth(element: HTMLElement) {
+		element.scrollIntoView({ behavior: 'smooth' });
+	}
 }

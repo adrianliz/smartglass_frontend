@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "smartglass-b3a57": {
+      "hosting": {
+        "smartglass": [
+          "smartglass-b3a57"
+        ]
+      }
+    }
+  }
+}

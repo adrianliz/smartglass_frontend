@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
 export class AlreadyLoggedInGuard implements CanActivate, CanLoad {
 	constructor(private router: Router) {}
 
-	private alreadyLoggedIn() {
+	private alreadyLoggedIn(): boolean {
 		if (localStorage.getItem(AuthService.ID_TOKEN) !== null) {
 			this.router.navigateByUrl('/dashboard');
 			return true;

@@ -35,5 +35,12 @@
 	"WHEEL_DIAMETER_MM": "MM of wheel diameter",
 	"ERROR_CAUSE": "Error cause",
 	"ERROR_TIMES_OCCURRED": "Times occurred",
-	"NO_DATA": "No data available"
+	"NO_DATA": "No data available",
+	"UPDATE_PROFILE": "Update profile",
+	"USERNAME": "Username",
+	"NEW_PWD": "New password",
+	"NEW_PWD_CONFIRM": "Repeat new password",
+	"INVALID_USERNAME": "Username must have at least 4 characters",
+	"INVALID_IMAGE": "Not a valid image",
+	"SUCCESS_UPDATE": "Profile was updated successfully"
 }

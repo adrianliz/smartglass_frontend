@@ -93,3 +93,5 @@ export const ERRORS_PRODUCED_COLUMNS: TableColumn[] = [
 export const NO_DATA_LABEL: Label = 'NO_DATA';
 
 export const NO_DATA_DATASET = { data: [100], backgroundColor: '#F2EEE8' };
+
+export const IMAGE_CHECKER: RegExp = new RegExp('(.*?).(png|jpg|jpeg)$');

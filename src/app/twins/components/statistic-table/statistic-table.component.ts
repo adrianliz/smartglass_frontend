@@ -1,7 +1,5 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { tap } from 'rxjs/operators';
 import { StatisticComponent, TableModel } from '../../models/statistic.model';
 
 @Component({
@@ -16,7 +14,7 @@ export class StatisticTableComponent implements StatisticComponent, OnInit {
 
 	constructor() {}
 
-	ngOnInit(): void {
+	ngOnInit() {
 		this.model.dataSource.paginator = this.paginator;
 	}
 }

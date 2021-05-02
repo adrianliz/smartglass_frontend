@@ -21,7 +21,7 @@ export class LoginComponent {
 		return this.loginForm.controls;
 	}
 
-	login(): void {
+	login() {
 		if (!this.loginForm.valid) {
 			return;
 		}
