@@ -9,6 +9,8 @@ import { AuthService } from '../../../auth/services/auth.service';
 	styleUrls: ['./user-icon.component.css'],
 })
 export class UserIconComponent implements OnInit {
+	private static readonly DEFAULT_IMG = new URL('/assets/img/noimage.png', window.location.href);
+
 	@Input()
 	size = 150;
 	@Input()
@@ -24,7 +26,13 @@ export class UserIconComponent implements OnInit {
 	constructor(private authService: AuthService) {}
 
 	ngOnInit() {
-		this.authService.user.subscribe((res) => (this.user = res));
+		this.authService.user.subscribe((res) => {
+			this.user = res;
+
+			if (!this.user.profileImage) {
+				this.user.profileImage = UserIconComponent.DEFAULT_IMG;
+			}
+		});
 
 		this.previewImage?.subscribe((res) => {
 			this.user.profileImage = res;
