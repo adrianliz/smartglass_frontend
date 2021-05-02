@@ -53,7 +53,7 @@ Ir a [Smartglass](http://155.210.68.101)
 
 - :white_check_mark: v0.9.1 -> Loader global con interceptors y pulido general
 
-- :white_check_mark: v0.10.1 -> Perfil de usuario
+- :white_check_mark: v0.10.0 -> Perfil de usuario
 
 ![v0.10.0](screenshots/v0.10.0_1.png)
 ![v0.10.0](screenshots/v0.10.0_2.png)
