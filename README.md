@@ -1,4 +1,8 @@
 # 🤖 Smartglass Frontend
+![CD pipeline status](https://github.com/adrianliz/smartglass_frontend/actions/workflows/cd.yml/badge.svg)
+
+## ℹ️Introducción
+
 Smartglass pretende ser un software que permita a sus usuarios tener información en tiempo real del estado de sus
 distintas máquinas-herramienta de corte de vidrio
 
@@ -68,8 +72,11 @@ Se deben usar estas variables en los ficheros environment.ts:
 
 ## 🏁 Integración continua
 
-¿Cómo desplegar el frontend en el servidor Apache de la máquina 155.210.68.101? -> Ejecutar:
-- ``make build && make up-remote``
+- Se dispone de un workflow de GitHub Actions que permite subir una imagen de la aplicación a Docker Hub en cada PUSH o PULL_REQUEST en la rama main
 
-Nota: Se puede desplegar en cualquier otra máquina y/o servidor de forma parecida copiando el directorio dist resultado 
-de ``make build``
+- 📋 Makefile:
+	- Ejecutar `make build && make apache2-up-remote` para desplegar la aplicación en la máquina 155.210.68.101
+	- Ejecutar `make docker-up-remote` para crear un contenedor en la máquina 155.210.68.101 con la última imagen disponible
+		en Docker Hub
+	- Ejecutar `make docker-down-remote` para parar dicho contenedor
+	- Ejecutar `make logs` para obtener los logs del contenedor en el fichero `logs.txt`
