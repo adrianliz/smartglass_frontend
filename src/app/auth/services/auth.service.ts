@@ -96,7 +96,10 @@ export class AuthService {
 			.pipe(
 				switchMap((res) => {
 					this.updateUser(res);
-					localStorage.setItem(AuthService.ID_TOKEN, res.idToken);
+
+					if (res.idToken) {
+						localStorage.setItem(AuthService.ID_TOKEN, res.idToken);
+					}
 
 					return this.translateMessage('SUCCESS_UPDATE', 'twins').pipe(
 						map<string, AuthResponse>((message) => {
