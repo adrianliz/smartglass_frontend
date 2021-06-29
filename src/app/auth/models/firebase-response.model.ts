@@ -9,6 +9,7 @@ export interface IdentityResponse {
 
 export interface UserDataResponse {
 	localId: string;
+	idToken: string;
 	email: string;
 	displayName: string;
 	photoUrl: URL;
