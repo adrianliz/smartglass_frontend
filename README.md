@@ -3,10 +3,11 @@
 
 ## ℹ️Introducción
 
-Smartglass pretende ser un software que permita a sus usuarios tener información en tiempo real del estado de sus
-distintas máquinas-herramienta de corte de vidrio
+Smartglass es un software que permite a sus usuarios el mantenimiento predictivo de sus máquinas-herramienta de mecanizado de vidrio a tavés de diferentes analíticas referentes a su funcionamiento productivo.
 
-También, se podrán generar distintas estadísticas derivadas de los resultados de explotación de dichas máquinas
+Este proyecto es el resultado de la implementación de la [metodología propuesta por dos investigadores de la Universidad de Auckland](https://doi.org/10.1016/j.jmsy.2018.05.003) para la implementación práctica de digital twins en el contexto de la Industria 4.0.
+
+Forma parte de la realización de mi TFG para la Universidad de Zaragoza.
 
 ## 💡 Estado
 ```diff
@@ -80,3 +81,5 @@ Se deben usar estas variables en los ficheros environment.ts:
 		en Docker Hub
 	- Ejecutar `make docker-down-remote` para parar dicho contenedor
 	- Ejecutar `make logs` para obtener los logs del contenedor en el fichero `logs.txt`
+	
+	- NOTA: Se necesita tener un usuario en la máquina 155 o modificar el servidor de producción.
