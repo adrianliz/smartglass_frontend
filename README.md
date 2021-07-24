@@ -15,7 +15,7 @@ Forma parte de la realización de mi TFG para la Universidad de Zaragoza.
 ```
 
 ## 🎉 Versión de prueba
-Ir a [Smartglass](http://155.210.68.101)
+Ir a [Smartglass](130.61.187.27)
 
 ## ⚡ Versiones disponibles
 - :white_check_mark: v0.1.0 -> Se muestra un dashboard con los distintas gemelos de prueba
