@@ -11,6 +11,6 @@ export const environment = {
 		appId: '1:616933049630:web:2769b7668a3d69f08a350f',
 		measurementId: 'G-DJ61MPG2SX',
 	},
-	twinsBaseURL: 'http://130.61.187.27:8080/twins',
-	statisticsBaseURL: 'http://130.61.187.27:8080/statistics',
+	twinsBaseURL: 'https://smartglass-backend.herokuapp.com/twins',
+	statisticsBaseURL: 'https://smartglass-backend.herokuapp.com/statistics',
 };
