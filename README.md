@@ -11,7 +11,7 @@ Forma parte de la realización de mi TFG para la Universidad de Zaragoza.
 
 ## 💡 Estado
 ```diff
-+ [En desarrollo]
+- [Finalizado]
 ```
 
 ## ⚡ Versiones disponibles
